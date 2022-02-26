@@ -1,27 +1,18 @@
 import React, { useEffect, useState } from "react";
-import "./App.css";
-import Search from "./Components/Search";
-
-async function fetchUserAPI(userName) {
-  const res = await fetch(`https://api.github.com/users/${userName}`);
-  if (!res.ok) {
-    throw new Error("user not found");
-  }
-  return await res.json();
-}
+import Search from "./components/Search";
+import { fetchUserAPI } from "./module/fetch";
+import "./style/App.css";
 
 const App = () => {
+  //default
   const [user, setUser] = useState("ZJimFang");
+  const [data, setData] = useState({});
 
   useEffect(() => {
-    fetchUserAPI(user)
-      .then((data) => {
-        console.log(data);
-      })
-      .catch((e) => {
-        console.log(e);
-      });
-  }, []);
+    fetchUserAPI(user).then((data) => setData(data));
+  }, [user]);
+
+  console.log(data);
 
   return <Search setUser={setUser} />;
 };
