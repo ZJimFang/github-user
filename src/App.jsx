@@ -1,20 +1,14 @@
-import React, { useEffect, useState } from "react";
+/* eslint-disable jsx-a11y/alt-text */
+import React from "react";
 import Search from "./components/Search";
-import { fetchUserAPI } from "./module/fetch";
-import "./style/App.css";
+import "./style/App.scss";
 
 const App = () => {
-  //default
-  const [user, setUser] = useState("ZJimFang");
-  const [data, setData] = useState({});
-
-  useEffect(() => {
-    fetchUserAPI(user).then((data) => setData(data));
-  }, [user]);
-
-  console.log(data);
-
-  return <Search setUser={setUser} />;
+  return (
+    <>
+      <Search />
+    </>
+  );
 };
 
 export default App;
