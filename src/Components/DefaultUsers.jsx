@@ -16,21 +16,6 @@ const DefaultUsers = () => {
         <Grid item>
           <UserCard />
         </Grid>
-        <Grid item>
-          <UserCard />
-        </Grid>
-        <Grid item>
-          <UserCard />
-        </Grid>
-        <Grid item>
-          <UserCard />
-        </Grid>
-        <Grid item>
-          <UserCard />
-        </Grid>
-        <Grid item>
-          <UserCard />
-        </Grid>
       </Grid>
     </Box>
   );

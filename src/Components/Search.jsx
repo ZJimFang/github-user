@@ -10,12 +10,11 @@ const Search = () => {
   return (
     <Box
       sx={{
-        backgroundColor: "#353535",
-        height: 70,
+        height: 100,
         display: "flex",
         justifyContent: "center",
         alignItems: "center",
-        m: 1,
+        m: 1.5,
         borderRadius: 3,
       }}
     >
@@ -26,7 +25,11 @@ const Search = () => {
           display: "flex",
           alignItems: "center",
           width: 250,
-          height: 40,
+          height: 50,
+          backgroundColor: "#353535",
+        }}
+        inputProps={{
+          style: { color: "white" },
         }}
       >
         <IconButton type="submit" sx={{ p: "10px" }} aria-label="search">
