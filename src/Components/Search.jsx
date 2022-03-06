@@ -10,11 +10,10 @@ const Search = () => {
   return (
     <Box
       sx={{
-        height: 100,
+        height: 60,
         display: "flex",
         justifyContent: "center",
         alignItems: "center",
-        m: 1.5,
         borderRadius: 3,
       }}
     >
@@ -24,17 +23,15 @@ const Search = () => {
           p: "2px 4px",
           display: "flex",
           alignItems: "center",
-          width: 250,
-          height: 50,
-          backgroundColor: "#353535",
-        }}
-        inputProps={{
-          style: { color: "white" },
+          width: 170,
+          height: 35,
+          backgroundColor: "#202020",
         }}
       >
-        <IconButton type="submit" sx={{ p: "10px" }} aria-label="search">
+        <IconButton type="submit" sx={{ p: "8px" }}>
           <GitHubIcon />
         </IconButton>
+
         <InputBase sx={{ ml: 1, flex: 1 }} placeholder="Search users" />
       </Paper>
     </Box>

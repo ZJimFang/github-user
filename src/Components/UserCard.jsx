@@ -5,22 +5,31 @@ import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
 import Typography from "@mui/material/Typography";
 import { CardActionArea } from "@mui/material";
+import "../style/userCard.scss";
 
-function UserCard() {
+function UserCard({ defaultUsers }) {
   return (
-    <CardActionArea>
+    <CardActionArea className="userCard">
       <Card
         sx={{
           display: "flex",
-          mt: 4,
+          alignItems: "center",
+          width: 300,
+          height: 150,
           p: 0.5,
-          backgroundColor: "rgba(255, 255, 255,0.5)",
+          backgroundColor: "#3A3C47",
+          border: "1px solid black",
+          borderRadius: 2,
         }}
       >
         <CardMedia
           component="img"
           sx={{
-            width: 150,
+            width: 100,
+            height: 100,
+            borderRadius: "50%",
+            border: "1px solid black",
+            m: 3,
           }}
           image="https://avatars.githubusercontent.com/u/74860733?v=4"
         />
@@ -39,15 +48,21 @@ function UserCard() {
               flex: "1 0 auto",
             }}
           >
-            <Typography component="div" variant="h5">
-              Username
+            <Typography
+              component="div"
+              sx={{
+                fontSize: "28px",
+                color: "#ADBACA",
+              }}
+            >
+              Jim
             </Typography>
             <Typography
               variant="subtitle1"
-              color="text.secondary"
               component="div"
+              sx={{ color: "#768390" }}
             >
-              ID
+              ZJimFang
             </Typography>
           </CardContent>
         </Box>
