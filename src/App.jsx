@@ -23,6 +23,7 @@ const App = () => {
           height: "95vh",
           backgroundColor: "#353535",
           borderRadius: 5,
+          overflow: "scroll",
         }}
       >
         <Search />

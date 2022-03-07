@@ -15,6 +15,7 @@ const Search = () => {
         justifyContent: "center",
         alignItems: "center",
         borderRadius: 3,
+        mb: 2,
       }}
     >
       <Paper

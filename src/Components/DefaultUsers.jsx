@@ -6,13 +6,18 @@ import UserCard from "./UserCard";
 
 const DefaultUsers = () => {
   const [defaultUsers, setDefaultUsers] = useState([]);
+
   useEffect(() => {
     const fetchData = async () => {
       const data = await Promise.all([
         fetchDefaultUser("ZJimFang"),
         fetchDefaultUser("mm7246591"),
+        fetchDefaultUser("mm7246591"),
+        fetchDefaultUser("mm7246591"),
+        fetchDefaultUser("mm7246591"),
+        fetchDefaultUser("mm7246591"),
       ]);
-      setDefaultUsers(data);
+      await setDefaultUsers(data);
     };
     fetchData();
   }, []);
@@ -26,17 +31,19 @@ const DefaultUsers = () => {
       });
   };
 
-  const userCard = [];
+  const userCards = [];
   defaultUsers.forEach((user) => {
     const { avatar_url, login, name, public_repos } = user;
-    userCard.push(
-      <UserCard
-        avatar={avatar_url}
-        name={name}
-        userName={login}
-        repos={public_repos}
-        key={uuidv4()}
-      />
+    userCards.push(
+      <Grid item>
+        <UserCard
+          avatar={avatar_url}
+          name={name}
+          userName={login}
+          repos={public_repos}
+          key={uuidv4()}
+        />
+      </Grid>
     );
   });
   return (
@@ -48,7 +55,7 @@ const DefaultUsers = () => {
         alignItems="center"
         spacing={3}
       >
-        <Grid item>{userCard}</Grid>
+        {userCards}
       </Grid>
     </Box>
   );

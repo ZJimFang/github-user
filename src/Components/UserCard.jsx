@@ -5,7 +5,6 @@ import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
 import Typography from "@mui/material/Typography";
 import { CardActionArea } from "@mui/material";
-import "../style/userCard.scss";
 
 function UserCard({ avatar, name, userName, repos }) {
   return (
@@ -14,9 +13,10 @@ function UserCard({ avatar, name, userName, repos }) {
         sx={{
           display: "flex",
           alignItems: "center",
-          width: 300,
+          width: 320,
           height: 150,
           p: 0.5,
+          m: 1,
           backgroundColor: "#3A3C47",
           border: "1px solid black",
           borderRadius: 2,
@@ -52,7 +52,7 @@ function UserCard({ avatar, name, userName, repos }) {
               component="div"
               sx={{
                 fontSize: "28px",
-                color: "#ADBACA",
+                color: "#CDD9E5",
               }}
             >
               {name}
@@ -60,9 +60,39 @@ function UserCard({ avatar, name, userName, repos }) {
             <Typography
               variant="subtitle1"
               component="div"
-              sx={{ color: "#768390" }}
+              sx={{
+                color: "#768390",
+              }}
             >
               {userName}
+            </Typography>
+            <Typography
+              variant="subtitle1"
+              component="div"
+              sx={{
+                color: "#768390",
+                display: "flex",
+                flexDirection: "row",
+                alignItems: "center",
+              }}
+            >
+              Repositories
+              <Typography
+                sx={{
+                  ml: 1,
+                  px: "6px",
+                  minWidth: 15,
+                  fontSize: "12px",
+                  fontHeight: "12px",
+                  fontWeight: "400px",
+                  borderRadius: "2rem",
+                  textAlign: "center",
+                  backgroundColor: "#768390",
+                  color: "#ADBAC7",
+                }}
+              >
+                {repos}
+              </Typography>
             </Typography>
           </CardContent>
         </Box>
