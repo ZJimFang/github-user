@@ -7,7 +7,7 @@ import Typography from "@mui/material/Typography";
 import { CardActionArea } from "@mui/material";
 import "../style/userCard.scss";
 
-function UserCard() {
+function UserCard({ avatar, name, userName, repos }) {
   return (
     <CardActionArea className="userCard">
       <Card
@@ -31,7 +31,7 @@ function UserCard() {
             border: "1px solid black",
             m: 3,
           }}
-          image="https://avatars.githubusercontent.com/u/74860733?v=4"
+          image={avatar}
         />
         <Box
           sx={{
@@ -55,14 +55,14 @@ function UserCard() {
                 color: "#ADBACA",
               }}
             >
-              Jim
+              {name}
             </Typography>
             <Typography
               variant="subtitle1"
               component="div"
               sx={{ color: "#768390" }}
             >
-              ZJimFang
+              {userName}
             </Typography>
           </CardContent>
         </Box>
