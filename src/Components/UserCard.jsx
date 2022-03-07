@@ -7,7 +7,7 @@ import Typography from "@mui/material/Typography";
 import { CardActionArea } from "@mui/material";
 import "../style/userCard.scss";
 
-function UserCard({ defaultUsers }) {
+function UserCard() {
   return (
     <CardActionArea className="userCard">
       <Card

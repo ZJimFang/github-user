@@ -4,16 +4,15 @@ import { Box } from "@mui/material";
 import UserCard from "./UserCard";
 
 const DefaultUsers = () => {
-  const defaultUsers = ["ZJimFang", "Tu-yunhsuan"];
+  const [defaultUsers, setDefaultUsers] = useState();
   useEffect(() => {
     const fetchData = async () => {
       const data = await Promise.all([
         fetchDefaultUser("ZJimFang"),
         fetchDefaultUser("Tu-yunhsuan"),
       ]);
-      console.log(data);
+      setDefaultUsers(data);
     };
-
     fetchData();
   }, []);
 
