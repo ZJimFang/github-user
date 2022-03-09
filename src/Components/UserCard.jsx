@@ -6,7 +6,9 @@ import CardMedia from "@mui/material/CardMedia";
 import Typography from "@mui/material/Typography";
 import { CardActionArea } from "@mui/material";
 
-function UserCard({ avatar, name, userName, repos }) {
+function UserCard({ user }) {
+  const { avatar_url, login, name, public_repos } = user;
+
   return (
     <CardActionArea className="userCard">
       <Card
@@ -16,7 +18,6 @@ function UserCard({ avatar, name, userName, repos }) {
           width: 320,
           height: 150,
           p: 0.5,
-          m: 1,
           backgroundColor: "#3A3C47",
           border: "1px solid black",
           borderRadius: 2,
@@ -31,7 +32,7 @@ function UserCard({ avatar, name, userName, repos }) {
             border: "1px solid black",
             m: 3,
           }}
-          image={avatar}
+          image={avatar_url}
         />
         <Box
           sx={{
@@ -55,16 +56,15 @@ function UserCard({ avatar, name, userName, repos }) {
                 color: "#CDD9E5",
               }}
             >
-              {name}
-            </Typography>
-            <Typography
-              variant="subtitle1"
-              component="div"
-              sx={{
-                color: "#768390",
-              }}
-            >
-              {userName}
+              {name || "-"}
+              <Typography
+                component="div"
+                sx={{
+                  color: "#768390",
+                }}
+              >
+                {login}
+              </Typography>
             </Typography>
             <Typography
               variant="subtitle1"
@@ -91,7 +91,7 @@ function UserCard({ avatar, name, userName, repos }) {
                   color: "#ADBAC7",
                 }}
               >
-                {repos}
+                {public_repos}
               </Typography>
             </Typography>
           </CardContent>

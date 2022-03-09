@@ -1,8 +1,11 @@
 /* eslint-disable jsx-a11y/alt-text */
-import React from "react";
+import React, { useState } from "react";
 import Search from "./components/Search";
 import "./style/App.scss";
 import DefaultUsers from "./components/DefaultUsers";
+import UserCard from "./components/UserCard";
+import { v4 as uuidv4 } from "uuid";
+import { Grid } from "@mui/material";
 import { Box } from "@mui/material";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
 
@@ -15,6 +18,9 @@ const theme = createTheme({
 });
 
 const App = () => {
+  const [userInfo, setUserInfo] = useState({});
+  const isEmpty = Object.keys(userInfo).length === 0;
+  const id = uuidv4();
   return (
     <ThemeProvider theme={theme}>
       <Box
@@ -26,8 +32,25 @@ const App = () => {
           overflow: "scroll",
         }}
       >
-        <Search />
-        <DefaultUsers />
+        <Search setUserInfo={setUserInfo} />
+        <Grid
+          container
+          direction="row"
+          justifyContent="center"
+          alignItems="center"
+          spacing={4}
+          sx={{
+            mt: 2,
+          }}
+        >
+          {isEmpty ? (
+            <DefaultUsers />
+          ) : (
+            <Grid item key={id}>
+              <UserCard user={userInfo} />
+            </Grid>
+          )}
+        </Grid>
       </Box>
     </ThemeProvider>
   );

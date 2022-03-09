@@ -1,12 +1,33 @@
 /* eslint-disable jsx-a11y/alt-text */
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Paper from "@mui/material/Paper";
 import InputBase from "@mui/material/InputBase";
 import IconButton from "@mui/material/IconButton";
 import GitHubIcon from "@mui/icons-material/GitHub";
 import { Box } from "@mui/material";
+import axios from "axios";
 
-const Search = () => {
+const Search = ({ setUserInfo }) => {
+  const [user, setUser] = useState("");
+
+  useEffect(() => {
+    if (user !== "") {
+      axios
+        .get(`https://api.github.com/users${user}`)
+        .then((res) => {
+          setUserInfo(res.data);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    }
+  }, [setUserInfo, user]);
+
+  const insertUser = (e) => {
+    const user = e.target.value;
+    user === "" ? setUser("") : setUser(`/${user}`);
+  };
+
   return (
     <Box
       sx={{
@@ -15,7 +36,7 @@ const Search = () => {
         justifyContent: "center",
         alignItems: "center",
         borderRadius: 3,
-        mb: 2,
+        mt: 2,
       }}
     >
       <Paper
@@ -33,7 +54,11 @@ const Search = () => {
           <GitHubIcon />
         </IconButton>
 
-        <InputBase sx={{ ml: 1, flex: 1 }} placeholder="Search users" />
+        <InputBase
+          sx={{ ml: 1, flex: 1 }}
+          placeholder="Search users"
+          onChange={insertUser}
+        />
       </Paper>
     </Box>
   );
