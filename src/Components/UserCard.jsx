@@ -15,7 +15,7 @@ function UserCard({ user }) {
         sx={{
           display: "flex",
           alignItems: "center",
-          width: 320,
+          width: 290,
           height: 150,
           p: 0.5,
           backgroundColor: "#3A3C47",
@@ -30,7 +30,7 @@ function UserCard({ user }) {
             height: 100,
             borderRadius: "50%",
             border: "1px solid black",
-            m: 3,
+            m: 2,
           }}
           image={avatar_url}
         />

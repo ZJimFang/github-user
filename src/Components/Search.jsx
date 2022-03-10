@@ -7,7 +7,7 @@ import GitHubIcon from "@mui/icons-material/GitHub";
 import { Box } from "@mui/material";
 import axios from "axios";
 
-const Search = ({ setUserInfo }) => {
+const Search = ({ setUserInfo, setIsConnect }) => {
   const [user, setUser] = useState("");
 
   useEffect(() => {
@@ -16,12 +16,14 @@ const Search = ({ setUserInfo }) => {
         .get(`https://api.github.com/users${user}`)
         .then((res) => {
           setUserInfo(res.data);
+          setIsConnect(true);
         })
         .catch((err) => {
-          console.log(err);
+          setIsConnect(false);
+          return err;
         });
     }
-  }, [setUserInfo, user]);
+  }, [setIsConnect, setUserInfo, user]);
 
   const insertUser = (e) => {
     const user = e.target.value;

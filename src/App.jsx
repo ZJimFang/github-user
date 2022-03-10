@@ -5,8 +5,7 @@ import "./style/App.scss";
 import DefaultUsers from "./components/DefaultUsers";
 import UserCard from "./components/UserCard";
 import { v4 as uuidv4 } from "uuid";
-import { Grid } from "@mui/material";
-import { Box } from "@mui/material";
+import { Grid, Box } from "@mui/material";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
 
 const theme = createTheme({
@@ -19,8 +18,10 @@ const theme = createTheme({
 
 const App = () => {
   const [userInfo, setUserInfo] = useState({});
+  const [isConnect, setIsConnect] = useState(true);
   const isEmpty = Object.keys(userInfo).length === 0;
   const id = uuidv4();
+  console.log(userInfo);
   return (
     <ThemeProvider theme={theme}>
       <Box
@@ -32,23 +33,22 @@ const App = () => {
           overflow: "scroll",
         }}
       >
-        <Search setUserInfo={setUserInfo} />
+        <Search setUserInfo={setUserInfo} setIsConnect={setIsConnect} />
         <Grid
           container
           direction="row"
           justifyContent="center"
           alignItems="center"
-          spacing={4}
-          sx={{
-            mt: 2,
-          }}
+          spacing={3}
         >
           {isEmpty ? (
             <DefaultUsers />
-          ) : (
+          ) : isConnect ? (
             <Grid item key={id}>
               <UserCard user={userInfo} />
             </Grid>
+          ) : (
+            <Grid item>user not found</Grid>
           )}
         </Grid>
       </Box>
