@@ -5,12 +5,17 @@ import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
 import Typography from "@mui/material/Typography";
 import { CardActionArea } from "@mui/material";
+import { Link as RouterLink } from "react-router-dom";
 
 function UserCard({ user }) {
   const { avatar_url, login, name, public_repos } = user;
 
   return (
-    <CardActionArea className="userCard">
+    <CardActionArea
+      className="userCard"
+      component={RouterLink}
+      to={`/users/${login}/repos`}
+    >
       <Card
         sx={{
           display: "flex",

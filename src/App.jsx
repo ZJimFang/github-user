@@ -21,7 +21,6 @@ const App = () => {
   const [isConnect, setIsConnect] = useState(true);
   const isEmpty = Object.keys(userInfo).length === 0;
   const id = uuidv4();
-  console.log(userInfo);
   return (
     <ThemeProvider theme={theme}>
       <Box

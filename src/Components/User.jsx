@@ -1,7 +1,23 @@
-import React from "react";
-
+import React, { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
 const User = () => {
-  return <div>123</div>;
+  let { username } = useParams();
+  const [userRepos, setUserRepos] = useState({});
+
+  const fetchUserRepos = (username) => {
+    return fetch(`https://api.github.com/users/${username}/repos`)
+      .then((res) => res.json())
+      .then((data) => {
+        return data;
+      });
+  };
+
+  useEffect(() => {
+    fetchUserRepos(username).then((data) => {
+      setUserRepos(data);
+    });
+  }, [username]);
+  return <div>{username}</div>;
 };
 
 export default User;
