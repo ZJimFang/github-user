@@ -20,6 +20,7 @@ const Search = ({ setUserInfo, setIsConnect }) => {
         })
         .catch((err) => {
           setIsConnect(false);
+          console.clear();
           return err;
         });
     }

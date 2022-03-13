@@ -47,7 +47,14 @@ const App = () => {
               <UserCard user={userInfo} />
             </Grid>
           ) : (
-            <Grid item>user not found</Grid>
+            <Grid
+              item
+              sx={{
+                color: "white",
+              }}
+            >
+              user not found
+            </Grid>
           )}
         </Grid>
       </Box>

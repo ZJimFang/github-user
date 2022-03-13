@@ -1,0 +1,35 @@
+.css-ojso4z {
+  & .repos_title {
+    width: fit-content;
+    position: relative;
+  }
+  & .repos_title::after,
+  & .repos_title::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+  }
+  & .repos_title::before {
+    border-left: 2px solid white;
+    background-color: #353535;
+    animation: typing 3s steps(30) forwards, blink 900ms steps(20) infinite;
+  }
+  @keyframes typing {
+    25% {
+      border-left: 2px solid white;
+      left: 0%;
+    }
+    100% {
+      border-left: 2px solid white;
+      left: 100%;
+    }
+  }
+  @keyframes blink {
+    to {
+      border-left: transparent;
+    }
+  }
+}
