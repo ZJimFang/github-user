@@ -5,7 +5,8 @@ import "./style/App.scss";
 import DefaultUsers from "./components/DefaultUsers";
 import UserCard from "./components/UserCard";
 import { v4 as uuidv4 } from "uuid";
-import { Grid, Box } from "@mui/material";
+import { styled } from "@mui/system";
+import { Grid } from "@mui/material";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
 
 const theme = createTheme({
@@ -16,6 +17,14 @@ const theme = createTheme({
   },
 });
 
+const Container = styled("div")({
+  width: "95vw",
+  height: "95vh",
+  backgroundColor: "#353535",
+  borderRadius: 5,
+  overflow: "scroll",
+});
+
 const App = () => {
   const [userInfo, setUserInfo] = useState({});
   const [isConnect, setIsConnect] = useState(true);
@@ -23,15 +32,7 @@ const App = () => {
   const id = uuidv4();
   return (
     <ThemeProvider theme={theme}>
-      <Box
-        sx={{
-          width: "95vw",
-          height: "95vh",
-          backgroundColor: "#353535",
-          borderRadius: 5,
-          overflow: "scroll",
-        }}
-      >
+      <Container>
         <Search setUserInfo={setUserInfo} setIsConnect={setIsConnect} />
         <Grid
           container
@@ -57,7 +58,7 @@ const App = () => {
             </Grid>
           )}
         </Grid>
-      </Box>
+      </Container>
     </ThemeProvider>
   );
 };

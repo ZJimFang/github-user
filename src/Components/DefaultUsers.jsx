@@ -4,6 +4,7 @@ import { v4 as uuidv4 } from "uuid";
 import UserCard from "./UserCard";
 
 const DefaultUsers = () => {
+  const userCards = [];
   const [defaultUsers, setDefaultUsers] = useState([]);
 
   useEffect(() => {
@@ -30,11 +31,9 @@ const DefaultUsers = () => {
       });
   };
 
-  const userCards = [];
   defaultUsers.forEach((user) => {
-    const id = uuidv4();
     userCards.push(
-      <Grid item key={id}>
+      <Grid item key={uuidv4()}>
         <UserCard user={user} />
       </Grid>
     );

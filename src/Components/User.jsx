@@ -2,38 +2,45 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { Box } from "@mui/material";
 import Typography from "@mui/material/Typography";
-import "../style/effect.scss";
+import RepoCard from "./RepoCard";
 import axios from "axios";
+import { v4 as uuidv4 } from "uuid";
+import "../style/effect.scss";
 
 const User = () => {
+  const userRepos_card = [];
   let { username } = useParams();
-  const [userRepos, setUserRepos] = useState({});
+  const [userRepos, setUserRepos] = useState([]);
+  const [page, setPage] = useState(1);
 
   useEffect(() => {
     axios
-      .get(`https://api.github.com/users/${username}/repos?first=10`)
+      .get(
+        `https://api.github.com/users/${username}/repos?page=${page}&per_page=10`
+      )
       .then((res) => {
-        console.log(res);
+        setUserRepos(res.data);
       })
       .catch((err) => {
         return err;
       });
-  }, [username]);
+  }, [page, username]);
 
-  // const fetchUserRepos = (username) => {
-  //   return fetch(`https://api.github.com/users/${username}/repos?_limit=10`)
-  //     .then((res) => res.json())
-  //     .then((data) => {
-  //       return data;
-  //     });
-  // };
+  userRepos.forEach((repo) => {
+    userRepos_card.push(
+      <Box
+        sx={{
+          width: "95%",
+          height: "100px",
+          borderTop: "1px solid #444c56",
+        }}
+        key={uuidv4()}
+      >
+        <RepoCard repo={repo} />
+      </Box>
+    );
+  });
 
-  // useEffect(() => {
-  //   fetchUserRepos(username).then((data) => {
-  //     setUserRepos(data);
-  //   });
-  // }, [username]);
-  console.log(userRepos);
   return (
     <Box
       sx={{
@@ -45,13 +52,14 @@ const User = () => {
       }}
     >
       <Box
+        className="Header"
         sx={{
-          width: "95%",
+          width: "100%",
           display: "flex",
           alignItems: "center",
           justifyContent: "center",
           mt: 2,
-          position: "fixed",
+          mb: 2.5,
         }}
       >
         <Typography
@@ -63,6 +71,17 @@ const User = () => {
         >
           Welcome to {username}'s repositories
         </Typography>
+      </Box>
+
+      <Box
+        sx={{
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "start",
+          flexDirection: "column",
+        }}
+      >
+        {userRepos_card}
       </Box>
     </Box>
   );
