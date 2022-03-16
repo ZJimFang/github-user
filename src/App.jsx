@@ -5,9 +5,7 @@ import "./style/App.scss";
 import DefaultUsers from "./components/DefaultUsers";
 import UserCard from "./components/UserCard";
 import { v4 as uuidv4 } from "uuid";
-import { styled } from "@mui/system";
-import { Grid } from "@mui/material";
-import { ThemeProvider, createTheme } from "@mui/material/styles";
+import { ThemeProvider, createTheme, Grid, styled } from "@material-ui/core";
 
 const theme = createTheme({
   typography: {

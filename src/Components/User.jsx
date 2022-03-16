@@ -27,18 +27,7 @@ const User = () => {
   }, [page, username]);
 
   userRepos.forEach((repo) => {
-    userRepos_card.push(
-      <Box
-        sx={{
-          width: "95%",
-          height: "100px",
-          borderTop: "1px solid #444c56",
-        }}
-        key={uuidv4()}
-      >
-        <RepoCard repo={repo} />
-      </Box>
-    );
+    userRepos_card.push(<RepoCard key={uuidv4()} repo={repo} />);
   });
 
   return (
@@ -69,11 +58,11 @@ const User = () => {
             color: "white",
           }}
         >
-          Welcome to {username}'s repositories
+          {username}'s repositories
         </Typography>
       </Box>
 
-      <Box
+      <ul
         sx={{
           display: "flex",
           alignItems: "center",
@@ -82,7 +71,7 @@ const User = () => {
         }}
       >
         {userRepos_card}
-      </Box>
+      </ul>
     </Box>
   );
 };

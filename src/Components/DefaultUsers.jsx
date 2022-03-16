@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Grid } from "@mui/material";
+import { Grid } from "@material-ui/core";
 import { v4 as uuidv4 } from "uuid";
 import UserCard from "./UserCard";
 

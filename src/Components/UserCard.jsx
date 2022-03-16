@@ -1,15 +1,41 @@
 import * as React from "react";
-import Box from "@mui/material/Box";
 import Card from "@mui/material/Card";
-import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
 import Typography from "@mui/material/Typography";
-import { CardActionArea } from "@mui/material";
+import {
+  Box,
+  CardActionArea,
+  CardContent,
+  makeStyles,
+} from "@material-ui/core";
 import { Link as RouterLink } from "react-router-dom";
 
-function UserCard({ user }) {
-  const { avatar_url, login, name, public_repos } = user;
+const useStyles = makeStyles((theme) => ({
+  cardContainer: {
+    display: "flex",
+    alignItems: "center",
+    width: 290,
+    height: 150,
+    backgroundColor: "#3A3C47",
+    border: "1px solid black",
+  },
+  reposNum: {
+    ml: 1,
+    px: "6px",
+    minWidth: 15,
+    fontSize: "12px",
+    fontHeight: "12px",
+    fontWeight: "400px",
+    borderRadius: "2rem",
+    textAlign: "center",
+    backgroundColor: "#768390",
+    color: "#ADBAC7",
+  },
+}));
 
+const UserCard = ({ user }) => {
+  const classes = useStyles();
+  const { avatar_url, login, name, public_repos } = user;
   return (
     <CardActionArea
       className="userCard"
@@ -17,19 +43,10 @@ function UserCard({ user }) {
       to={`/users/${login}/repos`}
     >
       <Card
-        sx={{
-          display: "flex",
-          alignItems: "center",
-          width: 290,
-          height: 150,
-          p: 0.5,
-          backgroundColor: "#3A3C47",
-          border: "1px solid black",
-          borderRadius: 2,
-        }}
+        style={{ backgroundColor: "#3A3C47" }}
+        className={classes.cardContainer}
       >
         <CardMedia
-          component="img"
           sx={{
             width: 100,
             height: 100,
@@ -38,6 +55,7 @@ function UserCard({ user }) {
             m: 2,
           }}
           image={avatar_url}
+          component="img"
         />
         <Box
           sx={{
@@ -45,15 +63,7 @@ function UserCard({ user }) {
             flexDirection: "column",
           }}
         >
-          <CardContent
-            sx={{
-              display: "flex",
-              alignItems: "start-begin",
-              justifyContent: "center",
-              flexDirection: "column",
-              flex: "1 0 auto",
-            }}
-          >
+          <CardContent>
             <Typography
               component="div"
               sx={{
@@ -104,6 +114,6 @@ function UserCard({ user }) {
       </Card>
     </CardActionArea>
   );
-}
+};
 
 export default UserCard;

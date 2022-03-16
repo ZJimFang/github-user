@@ -1,10 +1,8 @@
 /* eslint-disable jsx-a11y/alt-text */
 import React, { useEffect, useState } from "react";
 import Paper from "@mui/material/Paper";
-import InputBase from "@mui/material/InputBase";
-import IconButton from "@mui/material/IconButton";
 import GitHubIcon from "@mui/icons-material/GitHub";
-import { Box } from "@mui/material";
+import { Box, InputBase, IconButton } from "@material-ui/core";
 import axios from "axios";
 
 const Search = ({ setUserInfo, setIsConnect }) => {
