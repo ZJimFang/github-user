@@ -4,7 +4,7 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { ThemeProvider } from "@material-ui/core";
 import App from "./App";
 import User from "./components/User";
-import theme from "./theme";
+import theme from "./modules/theme";
 import "./style/index.scss";
 
 ReactDOM.render(

@@ -1,33 +1,40 @@
-import React from "react";
+import React, { useState } from "react";
 import Typography from "@mui/material/Typography";
 import { Box } from "@material-ui/core";
 import CardMedia from "@mui/material/CardMedia";
 import StarBorderIcon from "@mui/icons-material/StarBorder";
 import VisibilityIcon from "@mui/icons-material/Visibility";
+import ToggleButton from "@mui/material/ToggleButton";
 import language_match from "../json/language_match.json";
 import fork from "../images/fork.png";
+import Tooltip from "@mui/material/Tooltip";
+import InfoIcon from "@mui/icons-material/Info";
+import FavoriteIcon from "@mui/icons-material/Favorite";
 
 const liStyled = {
   display: "flex",
   width: "100%",
   borderTop: "1px solid #444c56",
   alignItems: "center",
+  justifyContent: "space-between",
 };
 
-const RepoCard = ({ repo }) => {
+const RepoCard = ({ repo, i }) => {
+  const [loved, setLoved] = useState(false);
   let language_color = "red";
   let status_color = "#9CD08F";
-  let timeObj;
   const {
     name,
     description,
     visibility,
     language,
     forks,
-    updated_at,
+    pushed_at,
     stargazers_count,
     watchers_count,
   } = repo;
+  const timeObj = new Date(pushed_at);
+  const timeStr = timeObj.toDateString().split(" ");
 
   for (const item in language_match) {
     if (item === language) {
@@ -38,10 +45,6 @@ const RepoCard = ({ repo }) => {
     }
   }
 
-  timeObj = new Date(updated_at);
-
-  console.log(timeObj);
-
   return (
     <li style={liStyled}>
       <Box
@@ -49,12 +52,20 @@ const RepoCard = ({ repo }) => {
           p: 3,
         }}
       >
+        <Typography
+          sx={{
+            color: "red",
+          }}
+        >
+          {i}
+        </Typography>
         <Box
           sx={{
             display: "flex",
             flexDirection: "row",
             alignItems: "center",
             justifyContent: "flex-start",
+            flexWrap: "wrap",
           }}
         >
           <Typography
@@ -67,11 +78,11 @@ const RepoCard = ({ repo }) => {
           >
             {name}
           </Typography>
-
           <Typography
             sx={{
               fontSize: 1,
               ml: 1,
+              mr: 1,
               p: "0 7px",
               color: `${status_color}`,
               border: `1px solid ${status_color}`,
@@ -82,6 +93,19 @@ const RepoCard = ({ repo }) => {
               ? visibility.charAt(0).toUpperCase() + visibility.substring(1)
               : visibility}
           </Typography>
+
+          <Tooltip
+            title={`update on ${timeStr[2]} ${timeStr[1]} ${timeStr[3]}`}
+            placement="top"
+          >
+            <InfoIcon
+              sx={{
+                color: "#768390",
+                width: "15px",
+                height: "15px",
+              }}
+            />
+          </Tooltip>
         </Box>
 
         <Box sx={{ mb: 1, maxWidth: "400px" }}>
@@ -144,18 +168,27 @@ const RepoCard = ({ repo }) => {
             }}
           />
           {watchers_count}
-
-          <Typography
-            sx={{
-              fontSize: 1,
-              ml: 2,
-              color: "#768390",
-            }}
-          >
-            update on {timeObj.getDate()}
-          </Typography>
         </Box>
       </Box>
+      <ToggleButton
+        sx={{
+          mx: 2,
+          backgroundColor: "#373E47",
+          color: "#ADBAC7",
+          height: "35px",
+          borderRadius: 3,
+        }}
+        value="check"
+        selected={loved}
+        onChange={() => {
+          setLoved(!loved);
+        }}
+      >
+        <FavoriteIcon sx={{ fontSize: "18px" }} className="favorite" />
+        <Typography sx={{ mx: 1, fontSize: "13px" }}>
+          {loved ? "Loved" : "Love"}
+        </Typography>
+      </ToggleButton>
     </li>
   );
 };

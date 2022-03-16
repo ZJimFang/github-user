@@ -20,3 +20,11 @@ input {
 svg {
   color: #b1b1b1;
 }
+
+button.MuiToggleButton-root.Mui-selected {
+  background-color: #373e47 !important;
+  color: #adbac7 !important;
+  & .favorite {
+    color: #c33149 !important;
+  }
+}
