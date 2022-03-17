@@ -2,55 +2,64 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { Box } from "@mui/material";
 import Typography from "@mui/material/Typography";
-import RepoCard from "./RepoCard";
+import UserReposList from "./UserReposList";
 import CircularProgress from "@mui/material/CircularProgress";
-import axios from "axios";
-import { v4 as uuidv4 } from "uuid";
+import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import "../style/effect.scss";
 
+async function fetchData(username, page, setUserReposData) {
+  const res = await fetch(
+    `https://api.github.com/users/${username}/repos?page=${page}&per_page=10`
+  );
+  const data = await res.json();
+  await setUserReposData(function (prevData) {
+    return [...prevData, ...data];
+  });
+}
+
+async function fetchNum(username, setRepositoriesNum) {
+  const res = await fetch(`https://api.github.com/users/${username}`);
+  const data = await res.json();
+  const { public_repos } = data;
+  setRepositoriesNum(public_repos);
+}
+
 const User = () => {
-  let i = 0;
   let { username } = useParams();
-  const userRepos_card = [];
-  const [userRepos, setUserRepos] = useState([]);
+  const [userReposData, setUserReposData] = useState([]);
   const [page, setPage] = useState(1);
   const [canConnect, setCanConnect] = useState(true);
+  const [repositoriesNum, setRepositoriesNum] = useState(0);
+
+  //get repositories num
+  useEffect(() => {
+    fetchNum(username, setRepositoriesNum);
+  }, [username]);
+
   //call api
   useEffect(() => {
-    axios
-      .get(
-        `https://api.github.com/users/${username}/repos?page=${page}&per_page=10`
-      )
-      .then((res) => {
-        setUserRepos(res.data);
-        console.log(res.data);
-      })
-      .catch((err) => {
-        console.log(err);
-        return err;
-      });
-  }, [page, username]);
+    fetchData(username, page, setUserReposData);
+  }, [username, page]);
 
+  //detect wether scroll to the bottom
   const handleScroll = (e) => {
     const position_now = Math.floor(e.target.scrollHeight - e.target.scrollTop);
-    if (position_now - 5 < e.target.clientHeight && canConnect) {
+    if (position_now - 5 < Math.floor(e.target.clientHeight) && canConnect) {
       let page_now = page + 1;
       setPage(page_now);
-      setCanConnect(false);
+
+      if (page_now * 10 >= repositoriesNum) {
+        console.log("stop");
+        setCanConnect(false);
+      }
     }
   };
-
-  //push data
-  userRepos.forEach((repo) => {
-    i++;
-    userRepos_card.push(<RepoCard key={uuidv4()} repo={repo} i={i} />);
-  });
 
   return (
     <Box
       sx={{
         width: "95vw",
-        maxHeight: "95vh",
+        height: "95vh",
         backgroundColor: "#353535",
         borderRadius: 5,
         overflow: "scroll",
@@ -68,6 +77,7 @@ const User = () => {
           mb: 2.5,
         }}
       >
+        <ArrowBackIcon />
         <Typography
           className="repos_title"
           sx={{
@@ -87,7 +97,7 @@ const User = () => {
           flexDirection: "column",
         }}
       >
-        {userRepos_card}
+        <UserReposList userReposData={userReposData} />
       </ul>
       <Box
         sx={{
@@ -98,12 +108,24 @@ const User = () => {
           mb: 2,
         }}
       >
-        <CircularProgress
-          style={{
-            width: "20px",
-            height: "20px",
-          }}
-        />
+        {canConnect ? (
+          <CircularProgress
+            style={{
+              width: "20px",
+              height: "20px",
+            }}
+          />
+        ) : (
+          <Typography
+            className="repos_title"
+            sx={{
+              fontSize: "15px",
+              color: "#768390",
+            }}
+          >
+            There is no more repositories here.
+          </Typography>
+        )}
       </Box>
     </Box>
   );

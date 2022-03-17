@@ -2,7 +2,7 @@
 import React, { useState } from "react";
 import Search from "./components/Search";
 import "./style/App.scss";
-import DefaultUsers from "./components/DefaultUsers";
+import Home from "./components/Home";
 import UserCard from "./components/UserCard";
 import { v4 as uuidv4 } from "uuid";
 import { ThemeProvider, createTheme, Grid, styled } from "@material-ui/core";
@@ -40,7 +40,7 @@ const App = () => {
           spacing={3}
         >
           {isEmpty ? (
-            <DefaultUsers />
+            <Home />
           ) : isConnect ? (
             <Grid item key={id}>
               <UserCard user={userInfo} />

@@ -3,7 +3,7 @@ import ReactDOM from "react-dom";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { ThemeProvider } from "@material-ui/core";
 import App from "./App";
-import User from "./components/User";
+import UserReposHome from "./components/UserReposHome";
 import theme from "./modules/theme";
 import "./style/index.scss";
 
@@ -13,7 +13,7 @@ ReactDOM.render(
       <Router>
         <Routes>
           <Route exact path="/" element={<App />} />
-          <Route path="/users/:username/repos" element={<User />} />
+          <Route path="/users/:username/repos" element={<UserReposHome />} />
         </Routes>
       </Router>
     </ThemeProvider>

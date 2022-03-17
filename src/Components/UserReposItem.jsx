@@ -19,7 +19,7 @@ const liStyled = {
   justifyContent: "space-between",
 };
 
-const RepoCard = ({ repo, i }) => {
+const RepoCard = ({ repo }) => {
   const [loved, setLoved] = useState(false);
   let language_color = "red";
   let status_color = "#9CD08F";
@@ -56,9 +56,7 @@ const RepoCard = ({ repo, i }) => {
           sx={{
             color: "red",
           }}
-        >
-          {i}
-        </Typography>
+        ></Typography>
         <Box
           sx={{
             display: "flex",
