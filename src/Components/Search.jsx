@@ -1,25 +1,30 @@
-/* eslint-disable jsx-a11y/alt-text */
 import React, { useEffect, useState } from "react";
 import Paper from "@mui/material/Paper";
 import GitHubIcon from "@mui/icons-material/GitHub";
 import { Box, InputBase, IconButton } from "@material-ui/core";
-import axios from "axios";
+
+async function fetchData(user) {
+  const res = await fetch(`https://api.github.com/users${user}`);
+  if (res.ok) {
+    return res.json();
+  }
+  throw new Error("no user found");
+}
 
 const Search = ({ setUserInfo, setIsConnect }) => {
   const [user, setUser] = useState("");
 
   useEffect(() => {
     if (user !== "") {
-      axios
-        .get(`https://api.github.com/users${user}`)
-        .then((res) => {
-          setUserInfo(res.data);
+      fetchData(user)
+        .then((data) => {
+          setUserInfo(data);
           setIsConnect(true);
         })
-        .catch((err) => {
+        .catch((error) => {
           setIsConnect(false);
           console.clear();
-          return err;
+          console.log(error);
         });
     }
   }, [setIsConnect, setUserInfo, user]);

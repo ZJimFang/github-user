@@ -10,6 +10,7 @@ import fork from "../images/fork.png";
 import Tooltip from "@mui/material/Tooltip";
 import InfoIcon from "@mui/icons-material/Info";
 import FavoriteIcon from "@mui/icons-material/Favorite";
+import { Link as RouterLink } from "react-router-dom";
 
 const liStyled = {
   display: "flex",
@@ -32,6 +33,7 @@ const RepoCard = ({ repo }) => {
     pushed_at,
     stargazers_count,
     watchers_count,
+    owner: { login },
   } = repo;
   const timeObj = new Date(pushed_at);
   const timeStr = timeObj.toDateString().split(" ");
@@ -72,7 +74,10 @@ const RepoCard = ({ repo }) => {
               color: "#6EA4BF",
               cursor: "pointer",
               fontWeight: "bold",
+              textDecoration: "none",
             }}
+            component={RouterLink}
+            to={`/users/${login}/repos/${name}`}
           >
             {name}
           </Typography>

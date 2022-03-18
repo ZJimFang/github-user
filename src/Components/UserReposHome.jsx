@@ -2,9 +2,9 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { Box } from "@mui/material";
 import Typography from "@mui/material/Typography";
-import UserReposList from "./UserReposList";
 import CircularProgress from "@mui/material/CircularProgress";
-import ArrowBackIcon from "@mui/icons-material/ArrowBack";
+import UserReposList from "./UserReposList";
+import UserReposHeader from "./UserReposHeader";
 import "../style/effect.scss";
 
 async function fetchData(username, page, setUserReposData) {
@@ -12,15 +12,19 @@ async function fetchData(username, page, setUserReposData) {
     `https://api.github.com/users/${username}/repos?page=${page}&per_page=10`
   );
   const data = await res.json();
+
   await setUserReposData(function (prevData) {
     return [...prevData, ...data];
   });
 }
 
-async function fetchNum(username, setRepositoriesNum) {
+async function fetchNum(username, setRepositoriesNum, setCanConnect) {
   const res = await fetch(`https://api.github.com/users/${username}`);
   const data = await res.json();
   const { public_repos } = data;
+
+  if (public_repos < 10) setCanConnect(false);
+
   setRepositoriesNum(public_repos);
 }
 
@@ -33,7 +37,7 @@ const User = () => {
 
   //get repositories num
   useEffect(() => {
-    fetchNum(username, setRepositoriesNum);
+    fetchNum(username, setRepositoriesNum, setCanConnect);
   }, [username]);
 
   //call api
@@ -49,46 +53,14 @@ const User = () => {
       setPage(page_now);
 
       if (page_now * 10 >= repositoriesNum) {
-        console.log("stop");
         setCanConnect(false);
       }
     }
   };
 
   return (
-    <Box
-      sx={{
-        width: "95vw",
-        height: "95vh",
-        backgroundColor: "#353535",
-        borderRadius: 5,
-        overflow: "scroll",
-      }}
-      onScroll={handleScroll}
-    >
-      <Box
-        className="Header"
-        sx={{
-          width: "100%",
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
-          mt: 2,
-          mb: 2.5,
-        }}
-      >
-        <ArrowBackIcon />
-        <Typography
-          className="repos_title"
-          sx={{
-            fontSize: "30px",
-            color: "white",
-          }}
-        >
-          {username}'s repositories
-        </Typography>
-      </Box>
-
+    <div className="container" onScroll={handleScroll}>
+      <UserReposHeader title={`${username}'s repositories`} toWhere={"/"} />
       <ul
         sx={{
           display: "flex",
@@ -127,7 +99,7 @@ const User = () => {
           </Typography>
         )}
       </Box>
-    </Box>
+    </div>
   );
 };
 

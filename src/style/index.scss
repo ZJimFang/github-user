@@ -28,3 +28,12 @@ button.MuiToggleButton-root.Mui-selected {
     color: #c33149 !important;
   }
 }
+
+.container {
+  overflow-x: hidden;
+  width: 95vw;
+  height: 95vh;
+  background-color: #353535;
+  border-radius: 20px;
+  overflow: scroll;
+}

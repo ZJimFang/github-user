@@ -2,10 +2,10 @@
 import React, { useState } from "react";
 import Search from "./components/Search";
 import "./style/App.scss";
-import Home from "./components/Home";
+import DefaultUsers from "./components/DefaultUsers";
 import UserCard from "./components/UserCard";
 import { v4 as uuidv4 } from "uuid";
-import { ThemeProvider, createTheme, Grid, styled } from "@material-ui/core";
+import { ThemeProvider, createTheme, Grid } from "@material-ui/core";
 
 const theme = createTheme({
   typography: {
@@ -15,14 +15,6 @@ const theme = createTheme({
   },
 });
 
-const Container = styled("div")({
-  width: "95vw",
-  height: "95vh",
-  backgroundColor: "#353535",
-  borderRadius: 5,
-  overflow: "scroll",
-});
-
 const App = () => {
   const [userInfo, setUserInfo] = useState({});
   const [isConnect, setIsConnect] = useState(true);
@@ -30,7 +22,7 @@ const App = () => {
   const id = uuidv4();
   return (
     <ThemeProvider theme={theme}>
-      <Container>
+      <div className="container">
         <Search setUserInfo={setUserInfo} setIsConnect={setIsConnect} />
         <Grid
           container
@@ -40,7 +32,7 @@ const App = () => {
           spacing={3}
         >
           {isEmpty ? (
-            <Home />
+            <DefaultUsers />
           ) : isConnect ? (
             <Grid item key={id}>
               <UserCard user={userInfo} />
@@ -56,7 +48,7 @@ const App = () => {
             </Grid>
           )}
         </Grid>
-      </Container>
+      </div>
     </ThemeProvider>
   );
 };
