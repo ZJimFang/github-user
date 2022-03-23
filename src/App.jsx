@@ -1,9 +1,9 @@
 /* eslint-disable jsx-a11y/alt-text */
 import React, { useState } from "react";
-import Search from "./components/Search";
+import Search from "./components/public/Search";
 import "./style/App.scss";
-import DefaultUsers from "./components/DefaultUsers";
-import UserCard from "./components/UserCard";
+import DefaultUsers from "./components/public/DefaultUsers";
+import UserCard from "./components/public/UserCard";
 import { v4 as uuidv4 } from "uuid";
 import { ThemeProvider, createTheme, Grid } from "@material-ui/core";
 

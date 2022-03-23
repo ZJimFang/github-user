@@ -3,8 +3,8 @@ import ReactDOM from "react-dom";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { ThemeProvider } from "@material-ui/core";
 import App from "./App";
-import UserReposHome from "./components/UserReposHome";
-import UserRepoPage from "./components/UserRepoPage";
+import UserReposHome from "./components/pages/UserRepos/UserReposHome";
+import RepoPage from "./components/pages/Repo/RepoPage";
 import theme from "./modules/theme";
 import "./style/index.scss";
 
@@ -15,10 +15,7 @@ ReactDOM.render(
         <Routes>
           <Route exact path="/" element={<App />} />
           <Route path="/users/:username/repos" element={<UserReposHome />} />
-          <Route
-            path="/users/:username/repos/:repo"
-            element={<UserRepoPage />}
-          />
+          <Route path="/users/:username/repos/:repo" element={<RepoPage />} />
         </Routes>
       </Router>
     </ThemeProvider>

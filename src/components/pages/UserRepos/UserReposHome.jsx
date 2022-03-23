@@ -4,8 +4,8 @@ import { Box } from "@mui/material";
 import Typography from "@mui/material/Typography";
 import CircularProgress from "@mui/material/CircularProgress";
 import UserReposList from "./UserReposList";
-import UserReposHeader from "./UserReposHeader";
-import "../style/effect.scss";
+import UserReposHeader from "../../public/NameHeader";
+import "../../../style/effect.scss";
 
 async function fetchData(username, page, setUserReposData) {
   const res = await fetch(
@@ -50,11 +50,11 @@ const User = () => {
     const position_now = Math.floor(e.target.scrollHeight - e.target.scrollTop);
     if (position_now - 5 < Math.floor(e.target.clientHeight) && canConnect) {
       let page_now = page + 1;
-      setPage(page_now);
 
       if (page_now * 10 >= repositoriesNum) {
         setCanConnect(false);
       }
+      setPage(page_now);
     }
   };
 

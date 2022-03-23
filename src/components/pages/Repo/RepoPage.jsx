@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import UserReposHeader from "./UserReposHeader";
+import UserReposHeader from "../../public/NameHeader";
 import { useParams } from "react-router-dom";
 
 async function fetchData(owner, repo) {
