@@ -1,16 +1,15 @@
-import React, { useState } from "react";
+import React from "react";
 import Typography from "@mui/material/Typography";
 import { Box } from "@material-ui/core";
 import CardMedia from "@mui/material/CardMedia";
 import StarBorderIcon from "@mui/icons-material/StarBorder";
 import VisibilityIcon from "@mui/icons-material/Visibility";
-import ToggleButton from "@mui/material/ToggleButton";
 import language_match from "../../../json/language_match.json";
 import fork from "../../../images/fork.png";
 import Tooltip from "@mui/material/Tooltip";
 import InfoIcon from "@mui/icons-material/Info";
-import FavoriteIcon from "@mui/icons-material/Favorite";
 import { Link as RouterLink } from "react-router-dom";
+import LoveBtn from "../../public/LoveBtn";
 
 const liStyled = {
   display: "flex",
@@ -21,7 +20,6 @@ const liStyled = {
 };
 
 const RepoCard = ({ repo }) => {
-  const [loved, setLoved] = useState(false);
   let language_color = "red";
   let status_color = "#9CD08F";
   const {
@@ -173,25 +171,8 @@ const RepoCard = ({ repo }) => {
           {watchers_count}
         </Box>
       </Box>
-      <ToggleButton
-        sx={{
-          mx: 2,
-          backgroundColor: "#373E47",
-          color: "#ADBAC7",
-          height: "35px",
-          borderRadius: 3,
-        }}
-        value="check"
-        selected={loved}
-        onChange={() => {
-          setLoved(!loved);
-        }}
-      >
-        <FavoriteIcon sx={{ fontSize: "18px" }} className="favorite" />
-        <Typography sx={{ mx: 1, fontSize: "13px" }}>
-          {loved ? "Loved" : "Love"}
-        </Typography>
-      </ToggleButton>
+
+      <LoveBtn />
     </li>
   );
 };

@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from "react";
-import UserReposHeader from "../../public/NameHeader";
+import NameHeader from "../../public/NameHeader";
+import RepoInfo from "./RepoInfo";
 import { useParams } from "react-router-dom";
 
 async function fetchData(owner, repo) {
   const res = await fetch(`https://api.github.com/repos/${owner}/${repo}`);
   const data = await res.json();
-  console.log(data);
   return data;
 }
 
@@ -13,19 +13,42 @@ const UserRepoPage = () => {
   const [repoInfo, setRepoInfo] = useState();
   const { username, repo } = useParams();
   useEffect(() => {
-    fetchData(username, repo).then((data) => {
-      const { full_name, description, stargazers_count, html_url } = data;
-      setRepoInfo({ full_name, description, stargazers_count, html_url });
-    });
+    const fetch = async () => {
+      const data = await fetchData(username, repo);
+      const {
+        full_name,
+        events_url,
+        languages_url,
+        contributors_url,
+        clone_url,
+        ssh_url,
+        description,
+        stargazers_count,
+        fork_count,
+      } = data;
+      setRepoInfo({
+        full_name,
+        events_url,
+        languages_url,
+        contributors_url,
+        clone_url,
+        ssh_url,
+        description,
+        stargazers_count,
+        fork_count,
+      });
+    };
+    fetch();
   }, [repo, username]);
 
-  console.log(repoInfo);
   return (
     <div className="container">
-      <UserReposHeader
+      <NameHeader
         title={`${username} / ${repo}`}
         toWhere={`/users/${username}/repos`}
+        route={`${username}/${repo}`}
       />
+      <RepoInfo repoInfo={repoInfo}></RepoInfo>
     </div>
   );
 };

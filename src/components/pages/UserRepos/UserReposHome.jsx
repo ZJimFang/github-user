@@ -4,28 +4,21 @@ import { Box } from "@mui/material";
 import Typography from "@mui/material/Typography";
 import CircularProgress from "@mui/material/CircularProgress";
 import UserReposList from "./UserReposList";
-import UserReposHeader from "../../public/NameHeader";
+import NameHeader from "../../public/NameHeader";
 import "../../../style/effect.scss";
 
-async function fetchData(username, page, setUserReposData) {
+async function fetchData(username, page) {
   const res = await fetch(
     `https://api.github.com/users/${username}/repos?page=${page}&per_page=10`
   );
   const data = await res.json();
-
-  await setUserReposData(function (prevData) {
-    return [...prevData, ...data];
-  });
+  return data;
 }
 
-async function fetchNum(username, setRepositoriesNum, setCanConnect) {
+async function fetchNum(username) {
   const res = await fetch(`https://api.github.com/users/${username}`);
-  const data = await res.json();
-  const { public_repos } = data;
-
-  if (public_repos < 10) setCanConnect(false);
-
-  setRepositoriesNum(public_repos);
+  const { public_repos } = await res.json();
+  return public_repos;
 }
 
 const User = () => {
@@ -35,15 +28,25 @@ const User = () => {
   const [canConnect, setCanConnect] = useState(true);
   const [repositoriesNum, setRepositoriesNum] = useState(0);
 
-  //get repositories num
   useEffect(() => {
-    fetchNum(username, setRepositoriesNum, setCanConnect);
-  }, [username]);
+    const fetch = async () => {
+      const public_repos = await fetchNum(username);
 
-  //call api
+      if (public_repos < 10) setCanConnect(false);
+      setRepositoriesNum(public_repos);
+    };
+    fetch();
+  }, []);
+
   useEffect(() => {
-    fetchData(username, page, setUserReposData);
-  }, [username, page]);
+    const fetch = async () => {
+      const data = await fetchData(username, page);
+      setUserReposData(function (prevData) {
+        return [...prevData, ...data];
+      });
+    };
+    fetch();
+  }, [page]);
 
   //detect wether scroll to the bottom
   const handleScroll = (e) => {
@@ -60,7 +63,11 @@ const User = () => {
 
   return (
     <div className="container" onScroll={handleScroll}>
-      <UserReposHeader title={`${username}'s repositories`} toWhere={"/"} />
+      <NameHeader
+        title={`${username}'s repositories`}
+        toWhere={"/"}
+        route={`${username}`}
+      />
       <ul
         sx={{
           display: "flex",

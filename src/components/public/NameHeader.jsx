@@ -1,10 +1,9 @@
 import React from "react";
 import { Box } from "@mui/material";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
-import Typography from "@mui/material/Typography";
 import { Link as RouterLink } from "react-router-dom";
 
-const UserReposHeader = ({ title, toWhere }) => {
+const NameHeader = ({ title, toWhere, route }) => {
   return (
     <Box
       className="Header"
@@ -36,17 +35,11 @@ const UserReposHeader = ({ title, toWhere }) => {
           }}
         />
       </Box>
-      <Typography
-        className="repos_title"
-        sx={{
-          fontSize: "30px",
-          color: "white",
-        }}
-      >
+      <a href={`https://github.com/${route}`} className="repos_title">
         {title}
-      </Typography>
+      </a>
     </Box>
   );
 };
 
-export default UserReposHeader;
+export default NameHeader;

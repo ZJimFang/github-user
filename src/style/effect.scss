@@ -1,7 +1,11 @@
 .Header {
   & .repos_title {
+    text-decoration: none;
     width: fit-content;
     position: relative;
+    font-size: 30px;
+    color: #539bf5;
+    cursor: pointer;
   }
   & .repos_title::after,
   & .repos_title::before {
