@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Box, Grid } from "@mui/material";
+import { Box } from "@mui/material";
 import Contributor from "../../public/Contributor";
 import Stack from "@mui/material/Stack";
 import Typography from "@mui/material/Typography";
@@ -15,8 +15,7 @@ async function fetchData(url) {
 
 const RepoInfo = ({ repoInfo }) => {
   let style = "";
-  const { full_name, contributors_url, clone_url, ssh_url, description } =
-    repoInfo || "";
+  const { contributors_url, description } = repoInfo || "";
 
   const [contributors, setContributors] = useState([]);
   useEffect(() => {
@@ -38,7 +37,6 @@ const RepoInfo = ({ repoInfo }) => {
         alignItems: "center",
         justifyContent: "space-around",
         borderTop: "1px solid",
-        borderBottom: "1px solid",
         borderColor: "#ADBAC7",
       }}
     >

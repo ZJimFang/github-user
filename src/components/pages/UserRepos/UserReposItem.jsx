@@ -154,7 +154,7 @@ const RepoCard = ({ repo }) => {
               mr: 0.5,
               width: "18px",
               height: "18px",
-              color: "#768390",
+              color: "#b1b1b1",
             }}
           />
           {stargazers_count}
@@ -165,7 +165,7 @@ const RepoCard = ({ repo }) => {
               mr: 0.5,
               width: "18px",
               height: "18px",
-              color: "#768390",
+              color: "#b1b1b1",
             }}
           />
           {watchers_count}

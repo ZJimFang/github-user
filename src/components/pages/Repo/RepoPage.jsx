@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import NameHeader from "../../public/NameHeader";
 import RepoInfo from "./RepoInfo";
+import RepoDetail from "./RepoDetail";
+import RepoActive from "./RepoActive";
 import { useParams } from "react-router-dom";
 
 async function fetchData(owner, repo) {
@@ -24,7 +26,7 @@ const UserRepoPage = () => {
         ssh_url,
         description,
         stargazers_count,
-        fork_count,
+        forks_count,
       } = data;
       setRepoInfo({
         full_name,
@@ -35,7 +37,7 @@ const UserRepoPage = () => {
         ssh_url,
         description,
         stargazers_count,
-        fork_count,
+        forks_count,
       });
     };
     fetch();
@@ -48,7 +50,8 @@ const UserRepoPage = () => {
         toWhere={`/users/${username}/repos`}
         route={`${username}/${repo}`}
       />
-      <RepoInfo repoInfo={repoInfo}></RepoInfo>
+      <RepoInfo repoInfo={repoInfo} />
+      <RepoDetail repoInfo={repoInfo} />
     </div>
   );
 };
