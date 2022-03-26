@@ -12,12 +12,10 @@ const RepoDetail = ({ repoInfo }) => {
     <Box
       sx={{
         display: "flex",
-        flexDirection: "row",
+        flexDirection: "column",
         alignItems: "center",
         justifyContent: "space-around",
         flexWrap: "wrap",
-        borderTop: "1px solid",
-        borderColor: "#ADBAC7",
       }}
     >
       <Box
@@ -30,38 +28,7 @@ const RepoDetail = ({ repoInfo }) => {
           alignItems: "center",
           flexWrap: "wrap",
           width: "250px",
-        }}
-      >
-        <StarIcon sx={{ fontSize: "3.2rem", color: "#DEBA6F" }} />
-        <Typography
-          sx={{
-            mt: 1,
-            px: "6px",
-            minWidth: 20,
-            fontSize: "12px",
-            fontHeight: "12px",
-            fontWeight: "400px",
-            borderRadius: "2rem",
-            textAlign: "center",
-            backgroundColor: "#768390",
-            color: "#ADBAC7",
-          }}
-        >
-          {stargazers_count}
-        </Typography>
-      </Box>
-
-      <Box
-        sx={{
-          my: 2,
-          mx: 1,
-          display: "flex",
-          flexDirection: "column",
-          justifyContent: "center",
-          alignItems: "center",
-          flexWrap: "wrap",
-          width: "250px",
-          height: "100px",
+          height: "180px",
         }}
       >
         <PieChart languages_url={languages_url} />
@@ -69,39 +36,77 @@ const RepoDetail = ({ repoInfo }) => {
 
       <Box
         sx={{
-          my: 2,
-          mx: 1,
           display: "flex",
-          flexDirection: "column",
-          justifyContent: "center",
+          flexDirection: "row",
           alignItems: "center",
-          flexWrap: "wrap",
-          width: "250px",
+          justifyContent: "space-around",
         }}
       >
-        <CardMedia
+        <Box
           sx={{
-            width: "48px",
-          }}
-          image={fork}
-          component="img"
-        />
-        <Typography
-          sx={{
-            mt: 1,
-            px: "6px",
-            minWidth: 20,
-            fontSize: "12px",
-            fontHeight: "12px",
-            fontWeight: "400px",
-            borderRadius: "2rem",
-            textAlign: "center",
-            backgroundColor: "#768390",
-            color: "#ADBAC7",
+            my: 1,
+            display: "flex",
+            flexDirection: "column",
+            justifyContent: "center",
+            alignItems: "center",
+            flexWrap: "wrap",
+            width: "250px",
           }}
         >
-          {forks_count}
-        </Typography>
+          <StarIcon sx={{ fontSize: "2.5rem", color: "#DEBA6F" }} />
+          <Typography
+            sx={{
+              mt: 1,
+              px: "6px",
+              minWidth: 20,
+              fontSize: "12px",
+              fontHeight: "12px",
+              fontWeight: "400px",
+              borderRadius: "2rem",
+              textAlign: "center",
+              backgroundColor: "#768390",
+              color: "#ADBAC7",
+            }}
+          >
+            {stargazers_count}
+          </Typography>
+        </Box>
+
+        <Box
+          sx={{
+            my: 1,
+            display: "flex",
+            flexDirection: "column",
+            justifyContent: "center",
+            alignItems: "center",
+            flexWrap: "wrap",
+            width: "250px",
+          }}
+        >
+          <CardMedia
+            sx={{
+              width: "2.5rem",
+            }}
+            image={fork}
+            component="img"
+          />
+          <Typography
+            sx={{
+              mt: 1,
+              px: "6px",
+              minWidth: 20,
+              fontSize: "12px",
+              fontHeight: "12px",
+              fontWeight: "400px",
+              borderRadius: "2rem",
+              textAlign: "center",
+              backgroundColor: "#768390",
+              color: "#ADBAC7",
+            }}
+          >
+            {forks_count}
+          </Typography>
+        </Box>
       </Box>
     </Box>
   );

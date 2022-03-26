@@ -35,7 +35,11 @@ const NameHeader = ({ title, toWhere, route }) => {
           }}
         />
       </Box>
-      <a href={`https://github.com/${route}`} className="repos_title">
+      <a
+        href={`https://github.com/${route}`}
+        className="repos_title"
+        target="_blank"
+      >
         {title}
       </a>
     </Box>

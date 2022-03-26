@@ -1,7 +1,18 @@
 import React, { useState, useEffect } from "react";
 import { Pie } from "react-chartjs-2";
 import { Chart as ChartJS } from "chart.js/auto";
+import ClearIcon from "@mui/icons-material/Clear";
 import language_match from "../../../json/language_match.json";
+
+const options = {
+  responsive: true,
+  maintainAspectRatio: false,
+  plugins: {
+    legend: {
+      display: false,
+    },
+  },
+};
 
 async function fetchData(url) {
   if (url === undefined) return;
@@ -26,8 +37,11 @@ function PieChart({ languages_url }) {
     const fetch = async () => {
       const data = await fetchData(languages_url);
       const set = [];
-
-      if (data === undefined) return;
+      let total = 0;
+      if (data === undefined || Object.entries(data).length === 0) return;
+      for (let prop in data) {
+        total += data[prop];
+      }
       for (let prop in data) {
         let language_color = "";
         for (const language in language_match) {
@@ -38,7 +52,11 @@ function PieChart({ languages_url }) {
             language_color = "#768390";
           }
         }
-        set.push({ name: prop, val: data[prop], color: language_color });
+        set.push({
+          name: prop,
+          val: Math.round((data[prop] / total) * 100),
+          color: language_color,
+        });
       }
       setLanguageData({
         labels: set.map((data) => data.name),
@@ -49,11 +67,21 @@ function PieChart({ languages_url }) {
           },
         ],
       });
+      setHasData(true);
     };
     fetch();
   }, [languages_url]);
 
-  return <Pie data={languageData} />;
+  return hasData ? (
+    <Pie data={languageData} options={options} />
+  ) : (
+    <ClearIcon
+      sx={{
+        width: "80px",
+        height: "80px",
+      }}
+    />
+  );
 }
 
 export default PieChart;

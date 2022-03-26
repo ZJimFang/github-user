@@ -32,17 +32,15 @@ const RepoInfo = ({ repoInfo }) => {
       sx={{
         mt: 2,
         display: "flex",
-        flexDirection: "row",
+        flexDirection: "column",
         flexWrap: "wrap",
         alignItems: "center",
         justifyContent: "space-around",
-        borderTop: "1px solid",
-        borderColor: "#ADBAC7",
       }}
     >
       <Box
         sx={{
-          my: 2,
+          my: 1,
           mx: 1,
           display: "flex",
           flexDirection: "column",
@@ -54,14 +52,14 @@ const RepoInfo = ({ repoInfo }) => {
         <Typography
           sx={{
             color: "#ADBAC7",
-            mb: 1,
+            mb: 1.5,
           }}
         >
           Contributors
         </Typography>
         <Box
           sx={{
-            width: "250px",
+            width: "400px",
             height: "40px",
             overflow: "scroll",
           }}
@@ -77,7 +75,7 @@ const RepoInfo = ({ repoInfo }) => {
       <Box
         sx={{
           mx: 1,
-          my: 2,
+          my: 1,
           display: "flex",
           flexDirection: "column",
           justifyContent: "center",

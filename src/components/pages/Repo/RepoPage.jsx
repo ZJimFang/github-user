@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { Box } from "@mui/material";
 import NameHeader from "../../public/NameHeader";
 import RepoInfo from "./RepoInfo";
 import RepoDetail from "./RepoDetail";
@@ -18,23 +19,15 @@ const UserRepoPage = () => {
     const fetch = async () => {
       const data = await fetchData(username, repo);
       const {
-        full_name,
-        events_url,
         languages_url,
         contributors_url,
-        clone_url,
-        ssh_url,
         description,
         stargazers_count,
         forks_count,
       } = data;
       setRepoInfo({
-        full_name,
-        events_url,
         languages_url,
         contributors_url,
-        clone_url,
-        ssh_url,
         description,
         stargazers_count,
         forks_count,
@@ -50,8 +43,19 @@ const UserRepoPage = () => {
         toWhere={`/users/${username}/repos`}
         route={`${username}/${repo}`}
       />
-      <RepoInfo repoInfo={repoInfo} />
-      <RepoDetail repoInfo={repoInfo} />
+      <Box
+        sx={{
+          display: "flex",
+          flexDirection: "row",
+          flexWrap: "wrap",
+          alignItems: "center",
+          justifyContent: "center",
+        }}
+      >
+        <RepoInfo repoInfo={repoInfo} />
+        <RepoDetail repoInfo={repoInfo} />
+      </Box>
+      <RepoActive repoInfo={repoInfo} />
     </div>
   );
 };
