@@ -12,7 +12,7 @@ async function fetchData(username, repo) {
 }
 
 const RepoActive = () => {
-  const [eventData, setEventData] = useState({});
+  const [eventData, setEventData] = useState([]);
   const { username, repo } = useParams();
   useEffect(() => {
     const fetch = async () => {
@@ -25,13 +25,12 @@ const RepoActive = () => {
   return (
     <Box
       sx={{
+        height: "35vh",
         display: "flex",
-        flexDirection: "row",
+        flexDirection: "column",
         alignItems: "center",
         justifyContent: "center",
         flexWrap: "wrap",
-        borderTop: "1px solid",
-        borderColor: "#ADBAC7",
       }}
     >
       <EventList eventData={eventData} />

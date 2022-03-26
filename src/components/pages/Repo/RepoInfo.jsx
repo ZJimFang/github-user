@@ -66,7 +66,11 @@ const RepoInfo = ({ repoInfo }) => {
         >
           <Stack direction="row" spacing={2} justifyContent={style}>
             {contributors.map((contributor) => (
-              <Contributor contributor={contributor} key={uuidv4()} />
+              <Contributor
+                avatar_url={contributor.avatar_url}
+                login={contributor.login}
+                key={uuidv4()}
+              />
             ))}
           </Stack>
         </Box>

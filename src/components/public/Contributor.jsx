@@ -3,8 +3,7 @@ import Avatar from "@mui/material/Avatar";
 import { Link as RouterLink } from "react-router-dom";
 import Tooltip from "@mui/material/Tooltip";
 
-const Contributor = ({ contributor }) => {
-  const { avatar_url, login } = contributor;
+const Contributor = ({ avatar_url, login }) => {
   return (
     <Tooltip title={login} placement="top" arrow>
       <Avatar
