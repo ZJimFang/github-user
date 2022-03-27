@@ -11,10 +11,11 @@ const RepoDetail = ({ repoInfo }) => {
   return (
     <Box
       sx={{
+        width: "450px",
         display: "flex",
-        flexDirection: "column",
+        flexDirection: "row",
         alignItems: "center",
-        justifyContent: "space-around",
+        justifyContent: "center",
         flexWrap: "wrap",
       }}
     >

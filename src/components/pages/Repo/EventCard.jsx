@@ -11,9 +11,8 @@ const EventCard = ({ event }) => {
       message,
       author: { date },
     },
-    author: { login, avatar_url },
+    author,
   } = event;
-
   const timeObj = new Date(date);
   const timeStr = timeObj.toDateString().split(" ");
   return (
@@ -26,7 +25,11 @@ const EventCard = ({ event }) => {
         borderBottom: "2px solid #373E47",
       }}
     >
-      <Contributor avatar_url={avatar_url} login={login} />
+      {author ? (
+        <Contributor avatar_url={author.avatar_url} login={author.login} />
+      ) : (
+        ""
+      )}
       <Typography
         sx={{
           textAlign: "center",

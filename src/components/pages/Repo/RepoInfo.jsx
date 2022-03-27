@@ -15,9 +15,9 @@ async function fetchData(url) {
 
 const RepoInfo = ({ repoInfo }) => {
   let style = "";
-  const { contributors_url, description } = repoInfo || "";
-
+  const { contributors_url, description, owner } = repoInfo || "";
   const [contributors, setContributors] = useState([]);
+
   useEffect(() => {
     const fetch = async () => {
       const contributors = await fetchData(contributors_url);
@@ -59,19 +59,29 @@ const RepoInfo = ({ repoInfo }) => {
         </Typography>
         <Box
           sx={{
-            width: "400px",
+            width: "32vw",
             height: "40px",
             overflow: "scroll",
           }}
         >
           <Stack direction="row" spacing={2} justifyContent={style}>
-            {contributors.map((contributor) => (
+            {contributors.length !== 0 ? (
+              contributors.map((contributor) => (
+                <Contributor
+                  avatar_url={contributor.avatar_url}
+                  login={contributor.login}
+                  key={uuidv4()}
+                />
+              ))
+            ) : owner ? (
               <Contributor
-                avatar_url={contributor.avatar_url}
-                login={contributor.login}
+                avatar_url={owner.avatar_url}
+                login={owner.login}
                 key={uuidv4()}
               />
-            ))}
+            ) : (
+              "123"
+            )}
           </Stack>
         </Box>
       </Box>

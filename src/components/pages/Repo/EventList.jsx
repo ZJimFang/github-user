@@ -9,7 +9,7 @@ const EventList = ({ eventData }) => {
       sx={{
         p: 1,
         height: "80%",
-        width: "320px",
+        width: "450px",
         color: "white",
         overflow: "auto",
         border: "6px solid #373E47",

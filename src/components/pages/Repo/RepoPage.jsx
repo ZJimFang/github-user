@@ -24,6 +24,7 @@ const UserRepoPage = () => {
         description,
         stargazers_count,
         forks_count,
+        owner,
       } = data;
       setRepoInfo({
         languages_url,
@@ -31,6 +32,7 @@ const UserRepoPage = () => {
         description,
         stargazers_count,
         forks_count,
+        owner,
       });
     };
     fetch();
@@ -49,7 +51,7 @@ const UserRepoPage = () => {
           flexDirection: "row",
           flexWrap: "wrap",
           alignItems: "center",
-          justifyContent: "center",
+          justifyContent: "space-around",
         }}
       >
         <RepoInfo repoInfo={repoInfo} />

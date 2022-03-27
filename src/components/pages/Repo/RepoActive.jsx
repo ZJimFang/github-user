@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Box } from "@mui/material";
 import { useParams } from "react-router-dom";
 import EventList from "./EventList";
+import EventChart from "./EventChart";
 
 async function fetchData(username, repo) {
   const res = await fetch(
@@ -25,14 +26,16 @@ const RepoActive = () => {
   return (
     <Box
       sx={{
+        mt: 2,
         height: "35vh",
         display: "flex",
-        flexDirection: "column",
+        flexDirection: "row",
         alignItems: "center",
-        justifyContent: "center",
+        justifyContent: "space-around",
         flexWrap: "wrap",
       }}
     >
+      <EventChart />
       <EventList eventData={eventData} />
     </Box>
   );
