@@ -172,7 +172,7 @@ const RepoCard = ({ repo }) => {
         </Box>
       </Box>
 
-      <LoveBtn />
+      <LoveBtn login={login} name={name} />
     </li>
   );
 };

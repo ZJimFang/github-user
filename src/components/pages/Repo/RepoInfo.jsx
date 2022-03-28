@@ -15,7 +15,7 @@ async function fetchData(url) {
 
 const RepoInfo = ({ repoInfo }) => {
   let style = "";
-  const { contributors_url, description, owner } = repoInfo || "";
+  const { contributors_url, description, owner, name, login } = repoInfo || "";
   const [contributors, setContributors] = useState([]);
 
   useEffect(() => {
@@ -80,7 +80,7 @@ const RepoInfo = ({ repoInfo }) => {
                 key={uuidv4()}
               />
             ) : (
-              "123"
+              ""
             )}
           </Stack>
         </Box>
@@ -127,7 +127,7 @@ const RepoInfo = ({ repoInfo }) => {
           width: "250px",
         }}
       >
-        <LoveBtn />
+        <LoveBtn login={login} name={name} />
       </Box>
     </Box>
   );

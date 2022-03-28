@@ -3,6 +3,8 @@ import { useParams } from "react-router-dom";
 import { Line } from "react-chartjs-2";
 import { Chart as ChartJS } from "chart.js/auto";
 import { Box } from "@mui/material";
+import Tooltip from "@mui/material/Tooltip";
+
 const options = {
   responsive: true,
   maintainAspectRatio: false,
@@ -28,6 +30,8 @@ const options = {
       display: false, // Hide X axis labels
     },
   },
+  tooltips: { enabled: false },
+  hover: { mode: null },
 };
 
 async function fetchData(username, repo, eventTime_Set) {
@@ -65,7 +69,6 @@ function buildTimeLine(eventTime_Set) {
 
 const EventChart = () => {
   const eventTime_Set = new Set();
-  const [status, setStatus] = useState(true);
   const { username, repo } = useParams();
   const arr = new Array(30).fill(1);
   const [chart, setChart] = useState({
@@ -98,15 +101,19 @@ const EventChart = () => {
   }, []);
 
   return (
-    <Box
-      sx={{
-        minWidth: "35vw",
-        height: "35vh",
-      }}
-    >
-      <Line data={chart} options={options} />
-    </Box>
+    <Tooltip title={"Activity in the first 30 days"} placement="top" arrow>
+      <Box
+        sx={{
+          minWidth: "35vw",
+          height: "35vh",
+          border: "1px solid rgb(75, 192, 192)",
+          borderRadius: "10px",
+          px: 1,
+        }}
+      >
+        <Line data={chart} options={options} />
+      </Box>
+    </Tooltip>
   );
 };
-
 export default EventChart;

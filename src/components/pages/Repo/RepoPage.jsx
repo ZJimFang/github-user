@@ -25,6 +25,8 @@ const UserRepoPage = () => {
         stargazers_count,
         forks_count,
         owner,
+        name,
+        owner: { login },
       } = data;
       setRepoInfo({
         languages_url,
@@ -33,6 +35,8 @@ const UserRepoPage = () => {
         stargazers_count,
         forks_count,
         owner,
+        name,
+        login,
       });
     };
     fetch();
@@ -43,7 +47,7 @@ const UserRepoPage = () => {
       <NameHeader
         title={`${username} / ${repo}`}
         toWhere={`/users/${username}/repos`}
-        route={`${username}/${repo}`}
+        route={`https://github.com/${username}/${repo}`}
       />
       <Box
         sx={{

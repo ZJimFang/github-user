@@ -1,10 +1,25 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import Typography from "@mui/material/Typography";
 import ToggleButton from "@mui/material/ToggleButton";
 
-const LoveBtn = () => {
+const LoveBtn = ({ login, name }) => {
   const [loved, setLoved] = useState(false);
+
+  function storeInLocal(login, name, loved) {
+    if (!loved) {
+      localStorage.setItem(name, JSON.stringify({ login, name }));
+    } else {
+      localStorage.removeItem(name);
+    }
+  }
+
+  useEffect(() => {
+    if (JSON.parse(localStorage.getItem(name))) {
+      setLoved(true);
+    }
+  }, [name]);
+
   return (
     <ToggleButton
       sx={{
@@ -18,6 +33,7 @@ const LoveBtn = () => {
       selected={loved}
       onChange={() => {
         setLoved(!loved);
+        storeInLocal(login, name, loved);
       }}
     >
       <FavoriteIcon sx={{ fontSize: "18px" }} className="favorite" />

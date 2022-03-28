@@ -66,7 +66,7 @@ const User = () => {
       <NameHeader
         title={`${username}'s repositories`}
         toWhere={"/"}
-        route={`${username}`}
+        route={`https://github.com/${username}`}
       />
       <ul
         sx={{

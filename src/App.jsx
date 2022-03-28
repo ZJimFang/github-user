@@ -1,6 +1,6 @@
 /* eslint-disable jsx-a11y/alt-text */
 import React, { useState } from "react";
-import Search from "./components/public/Search";
+import Nav from "./components/public/Nav";
 import "./style/App.scss";
 import DefaultUsers from "./components/public/DefaultUsers";
 import UserCard from "./components/public/UserCard";
@@ -23,7 +23,7 @@ const App = () => {
   return (
     <ThemeProvider theme={theme}>
       <div className="container">
-        <Search setUserInfo={setUserInfo} setIsConnect={setIsConnect} />
+        <Nav setUserInfo={setUserInfo} setIsConnect={setIsConnect} />
         <Grid
           container
           direction="row"
