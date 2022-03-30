@@ -5,6 +5,7 @@ import Typography from "@mui/material/Typography";
 import CircularProgress from "@mui/material/CircularProgress";
 import UserReposList from "./UserReposList";
 import NameHeader from "../../public/NameHeader";
+import { centerColumnStart, centerColumn } from "../../public/centerTypes";
 import "../../../style/effect.scss";
 
 async function fetchData(username, page) {
@@ -66,41 +67,22 @@ const User = () => {
       <NameHeader
         title={`${username}'s repositories`}
         toWhere={"/"}
-        route={`https://github.com/${username}`}
+        route={`${username}`}
       />
-      <ul
-        sx={{
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "start",
-          flexDirection: "column",
-        }}
-      >
+
+      <ul style={centerColumnStart}>
         <UserReposList userReposData={userReposData} />
       </ul>
-      <Box
-        sx={{
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
-          mt: 1,
-          mb: 2,
-        }}
-      >
+
+      <Box style={centerColumn} sx={{ m: "1 0 2 0" }}>
         {canConnect ? (
-          <CircularProgress
-            style={{
-              width: "20px",
-              height: "20px",
-            }}
-          />
+          <CircularProgress style={{ width: "20px", height: "20px" }} />
         ) : (
           <Typography
             className="repos_title"
-            sx={{
-              fontSize: "15px",
-              color: "#768390",
-            }}
+            variant="body2"
+            color="#768390"
+            sx={{ pb: 2 }}
           >
             There is no more repositories here.
           </Typography>

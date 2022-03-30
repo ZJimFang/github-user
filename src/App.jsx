@@ -5,6 +5,7 @@ import "./style/App.scss";
 import DefaultUsers from "./components/public/DefaultUsers";
 import UserCard from "./components/public/UserCard";
 import { v4 as uuidv4 } from "uuid";
+import Typography from "@mui/material/Typography";
 import { ThemeProvider, createTheme, Grid } from "@material-ui/core";
 
 const theme = createTheme({
@@ -27,7 +28,7 @@ const App = () => {
         <Grid
           container
           direction="row"
-          justifyContent="center"
+          justifyContent="space-around"
           alignItems="center"
           spacing={3}
         >
@@ -38,13 +39,10 @@ const App = () => {
               <UserCard user={userInfo} />
             </Grid>
           ) : (
-            <Grid
-              item
-              sx={{
-                color: "white",
-              }}
-            >
-              user not found
+            <Grid item sx={{ color: "white" }}>
+              <Typography variant="h3" sx={{ color: "#CDD9E5" }}>
+                user not found
+              </Typography>
             </Grid>
           )}
         </Grid>

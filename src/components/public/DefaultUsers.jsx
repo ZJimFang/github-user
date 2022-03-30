@@ -33,7 +33,7 @@ const DefaultUsers = () => {
 
   defaultUsers.forEach((user) => {
     userCards.push(
-      <Grid item key={uuidv4()}>
+      <Grid item justifyContent="center" alignItems="center" key={uuidv4()}>
         <UserCard user={user} />
       </Grid>
     );

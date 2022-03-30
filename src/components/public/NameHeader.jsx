@@ -2,38 +2,31 @@ import React from "react";
 import { Box } from "@mui/material";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import { Link as RouterLink } from "react-router-dom";
+import { makeStyles } from "@mui/styles";
+import { centerColumn } from "./centerTypes";
+
+const useStyles = makeStyles({
+  headerStyle: {
+    "&&": {
+      width: "100%",
+      position: "relative",
+      margin: "20px 0 25px 0",
+    },
+  },
+  arrow: {
+    cursor: "pointer",
+    position: "absolute",
+    bottom: "6px",
+    left: "20px",
+  },
+});
 
 const NameHeader = ({ title, toWhere, route }) => {
+  const classes = useStyles();
   return (
-    <Box
-      className="Header"
-      sx={{
-        width: "100%",
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "center",
-        position: "relative",
-        mt: 2,
-        mb: 2.5,
-      }}
-    >
-      <Box
-        component={RouterLink}
-        to={toWhere}
-        sx={{
-          cursor: "pointer",
-          position: "absolute",
-          left: "20px",
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
-        }}
-      >
-        <ArrowBackIcon
-          sx={{
-            lineHeight: "30px",
-          }}
-        />
+    <Box className={`Header ${classes.headerStyle}`} style={centerColumn}>
+      <Box component={RouterLink} to={toWhere}>
+        <ArrowBackIcon className={classes.arrow} style={centerColumn} />
       </Box>
       <a href={`${route}`} className="repos_title" target="_blank">
         {title}

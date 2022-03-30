@@ -5,6 +5,28 @@ import Stack from "@mui/material/Stack";
 import Typography from "@mui/material/Typography";
 import { v4 as uuidv4 } from "uuid";
 import LoveBtn from "../../public/LoveBtn";
+import {
+  spaceAroundColumn,
+  centerColumn,
+  centerColumnBtn,
+} from "../../public/centerTypes";
+import { makeStyles } from "@mui/styles";
+
+const useStyles = makeStyles({
+  contributors: {
+    "&&": {
+      width: "32vw",
+      height: "40px",
+      overflow: "scroll",
+    },
+  },
+  description: {
+    "&&": {
+      width: "300px",
+      height: "80px",
+    },
+  },
+});
 
 async function fetchData(url) {
   if (url === undefined) return;
@@ -14,6 +36,7 @@ async function fetchData(url) {
 }
 
 const RepoInfo = ({ repoInfo }) => {
+  const classes = useStyles();
   let style = "";
   const { contributors_url, description, owner, name, login } = repoInfo || "";
   const [contributors, setContributors] = useState([]);
@@ -28,42 +51,13 @@ const RepoInfo = ({ repoInfo }) => {
   style = contributors.length < 5 ? "center" : "flex-start";
 
   return (
-    <Box
-      sx={{
-        mt: 2,
-        display: "flex",
-        flexDirection: "column",
-        flexWrap: "wrap",
-        alignItems: "center",
-        justifyContent: "space-around",
-      }}
-    >
-      <Box
-        sx={{
-          my: 1,
-          mx: 1,
-          display: "flex",
-          flexDirection: "column",
-          justifyContent: "center",
-          alignItems: "center",
-          flexWrap: "wrap",
-        }}
-      >
-        <Typography
-          sx={{
-            color: "#ADBAC7",
-            mb: 1.5,
-          }}
-        >
+    <Box style={spaceAroundColumn} sx={{ m: 1 }}>
+      <Box style={spaceAroundColumn} sx={{ m: 1 }}>
+        <Typography color="#ADBAC7" sx={{ mb: 1.5 }}>
           Contributors
         </Typography>
-        <Box
-          sx={{
-            width: "32vw",
-            height: "40px",
-            overflow: "scroll",
-          }}
-        >
+
+        <Box className={classes.contributors}>
           <Stack direction="row" spacing={2} justifyContent={style}>
             {contributors.length !== 0 ? (
               contributors.map((contributor) => (
@@ -86,47 +80,19 @@ const RepoInfo = ({ repoInfo }) => {
         </Box>
       </Box>
 
-      <Box
-        sx={{
-          mx: 1,
-          my: 1,
-          display: "flex",
-          flexDirection: "column",
-          justifyContent: "center",
-          alignItems: "center",
-          width: "300px",
-          height: "80px",
-        }}
-      >
-        <Typography
-          sx={{
-            color: "#ADBAC7",
-            mb: 1,
-          }}
-        >
+      <Box style={centerColumn} className={classes.description}>
+        <Typography color="#ADBAC7" sx={{ mt: 1 }}>
           Description
         </Typography>
         <Typography
-          sx={{
-            color: "#768390",
-            overflow: "auto",
-            textAlign: "center",
-          }}
+          color="#768390"
+          sx={{ overflow: "auto", textAlign: "center" }}
         >
           {description || "---"}
         </Typography>
       </Box>
 
-      <Box
-        sx={{
-          mx: 1,
-          my: 2,
-          display: "flex",
-          flexDirection: "column",
-          justifyContent: "center",
-          width: "250px",
-        }}
-      >
+      <Box style={centerColumnBtn} sx={{ m: 2, width: "250px" }}>
         <LoveBtn login={login} name={name} />
       </Box>
     </Box>

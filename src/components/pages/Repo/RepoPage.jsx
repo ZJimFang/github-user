@@ -5,6 +5,7 @@ import RepoInfo from "./RepoInfo";
 import RepoDetail from "./RepoDetail";
 import RepoActive from "./RepoActive";
 import { useParams } from "react-router-dom";
+import { spaceAround } from "../../public/centerTypes";
 
 async function fetchData(owner, repo) {
   const res = await fetch(`https://api.github.com/repos/${owner}/${repo}`);
@@ -49,15 +50,7 @@ const UserRepoPage = () => {
         toWhere={`/users/${username}/repos`}
         route={`https://github.com/${username}/${repo}`}
       />
-      <Box
-        sx={{
-          display: "flex",
-          flexDirection: "row",
-          flexWrap: "wrap",
-          alignItems: "center",
-          justifyContent: "space-around",
-        }}
-      >
+      <Box style={spaceAround}>
         <RepoInfo repoInfo={repoInfo} />
         <RepoDetail repoInfo={repoInfo} />
       </Box>

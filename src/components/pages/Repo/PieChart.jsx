@@ -75,12 +75,7 @@ function PieChart({ languages_url }) {
   return hasData ? (
     <Pie data={languageData} options={options} />
   ) : (
-    <ClearIcon
-      sx={{
-        width: "80px",
-        height: "80px",
-      }}
-    />
+    <ClearIcon sx={{ width: "80px", height: "80px" }} />
   );
 }
 

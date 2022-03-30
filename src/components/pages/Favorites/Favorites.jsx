@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import NameHeader from "../../public/NameHeader";
 import UserReposList from "../UserRepos/UserReposList";
+import { centerColumnStart } from "../../public/centerTypes";
 
 async function fetchData(username, repo) {
   const res = await fetch(`https://api.github.com/repos/${username}/${repo}`);
@@ -32,14 +33,7 @@ const Favorites = () => {
         toWhere={"/"}
         route={"./favorites"}
       />
-      <ul
-        sx={{
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "start",
-          flexDirection: "column",
-        }}
-      >
+      <ul style={centerColumnStart}>
         <UserReposList userReposData={userReposData} />
       </ul>
     </div>

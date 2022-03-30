@@ -3,6 +3,7 @@ import { Box } from "@mui/material";
 import { useParams } from "react-router-dom";
 import EventList from "./EventList";
 import EventChart from "./EventChart";
+import { spaceAround } from "../../public/centerTypes";
 
 async function fetchData(username, repo) {
   const res = await fetch(
@@ -24,17 +25,7 @@ const RepoActive = () => {
   }, []);
 
   return (
-    <Box
-      sx={{
-        mt: 2,
-        height: "35vh",
-        display: "flex",
-        flexDirection: "row",
-        alignItems: "center",
-        justifyContent: "space-around",
-        flexWrap: "wrap",
-      }}
-    >
+    <Box style={spaceAround} sx={{ mt: 2, height: "35vh" }}>
       <EventChart />
       <EventList eventData={eventData} />
     </Box>
