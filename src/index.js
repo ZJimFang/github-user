@@ -12,7 +12,7 @@ ReactDOM.render(
   <React.StrictMode>
     <Router>
       <Routes>
-        <Route exact path="github-user" element={<App />} />
+        <Route exact path="/" element={<App />} />
         <Route path="/users/:username/repos" element={<UserReposHome />} />
         <Route path="/users/:username/repos/:repo" element={<RepoPage />} />
         <Route path="/favorites" element={<Favorites />} />
