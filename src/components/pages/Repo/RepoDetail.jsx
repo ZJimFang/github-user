@@ -24,6 +24,7 @@ const useStyles = makeStyles({
     },
   },
 });
+
 const RepoDetail = ({ repoInfo }) => {
   const classes = useStyles();
   const { stargazers_count, forks_count, languages_url } = repoInfo || "";
