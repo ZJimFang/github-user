@@ -10,7 +10,7 @@ import "./style/index.scss";
 
 ReactDOM.render(
   <React.StrictMode>
-    <Router>
+    <Router basename={process.env.PUBLIC_URL}>
       <Routes>
         <Route exact path="/" element={<App />} />
         <Route path="/users/:username/repos" element={<UserReposHome />} />
