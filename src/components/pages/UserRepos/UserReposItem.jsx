@@ -37,6 +37,7 @@ const useStyles = makeStyles({
       margin: "0 10px",
       padding: "0 7px",
       borderRadius: "2rem",
+      border: "1px solid #9CD08F",
     },
   },
   info: {
@@ -65,7 +66,6 @@ const useStyles = makeStyles({
 const RepoCard = ({ repo }) => {
   const classes = useStyles();
   let language_color = "red";
-  let status_color = "#9CD08F";
   const {
     name,
     description,
@@ -80,6 +80,7 @@ const RepoCard = ({ repo }) => {
   const timeObj = new Date(pushed_at);
   const timeStr = timeObj.toDateString().split(" ");
 
+  //find out the language color in /json/language_match
   for (const item in language_match) {
     if (item === language) {
       language_color = language_match[item].color;
@@ -100,13 +101,7 @@ const RepoCard = ({ repo }) => {
           >
             {name}
           </Typography>
-          <Typography
-            className={classes.status}
-            sx={{
-              color: `${status_color}`,
-              border: `1px solid ${status_color}`,
-            }}
-          >
+          <Typography className={classes.status} color="#9CD08F">
             {visibility.match("^[a-z]")
               ? visibility.charAt(0).toUpperCase() + visibility.substring(1)
               : visibility}

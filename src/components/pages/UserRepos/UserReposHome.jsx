@@ -78,12 +78,7 @@ const User = () => {
         {canConnect ? (
           <CircularProgress style={{ width: "20px", height: "20px" }} />
         ) : (
-          <Typography
-            className="repos_title"
-            variant="body2"
-            color="#768390"
-            sx={{ pb: 2 }}
-          >
+          <Typography variant="body1" color="#768390" sx={{ pb: 2 }}>
             There is no more repositories here.
           </Typography>
         )}

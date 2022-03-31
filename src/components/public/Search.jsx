@@ -16,6 +16,7 @@ const useStyles = makeStyles({
   },
 });
 
+//fetch user information
 async function fetchData(user) {
   const res = await fetch(`https://api.github.com/users${user}`);
   if (res.ok) {
@@ -28,6 +29,7 @@ const Search = ({ setUserInfo, setIsConnect }) => {
   const classes = useStyles();
   const [user, setUser] = useState("");
 
+  //if user input the search value then fetch
   useEffect(() => {
     if (user !== "") {
       fetchData(user)
@@ -42,10 +44,11 @@ const Search = ({ setUserInfo, setIsConnect }) => {
     }
   }, [setIsConnect, setUserInfo, user]);
 
-  const insertUser = (e) => {
+  //search value is match
+  function insertUser(e) {
     const user = e.target.value;
     user === "" ? setUser("") : setUser(`/${user}`);
-  };
+  }
 
   return (
     <Paper className={classes.search} style={centerRow} component="form">

@@ -7,6 +7,7 @@ const DefaultUsers = () => {
   const userCards = [];
   const [defaultUsers, setDefaultUsers] = useState([]);
 
+  //fetch when render
   useEffect(() => {
     const fetchData = async () => {
       const data = await Promise.all([
@@ -22,6 +23,7 @@ const DefaultUsers = () => {
     fetchData();
   }, []);
 
+  //fetch default users
   const fetchDefaultUser = (userName) => {
     return fetch(`https://api.github.com/users/${userName}`)
       .then((res) => res.json())

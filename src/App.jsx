@@ -1,7 +1,6 @@
 /* eslint-disable jsx-a11y/alt-text */
 import React, { useState } from "react";
 import Nav from "./components/public/Nav";
-import "./style/App.scss";
 import DefaultUsers from "./components/public/DefaultUsers";
 import UserCard from "./components/public/UserCard";
 import { v4 as uuidv4 } from "uuid";
@@ -20,7 +19,6 @@ const App = () => {
   const [userInfo, setUserInfo] = useState({});
   const [isConnect, setIsConnect] = useState(true);
   const isEmpty = Object.keys(userInfo).length === 0;
-  const id = uuidv4();
   return (
     <ThemeProvider theme={theme}>
       <div className="container">
@@ -34,15 +32,15 @@ const App = () => {
         >
           {isEmpty ? (
             <DefaultUsers />
-          ) : isConnect ? (
-            <Grid item key={id}>
-              <UserCard user={userInfo} />
-            </Grid>
           ) : (
-            <Grid item sx={{ color: "white" }}>
-              <Typography variant="h3" sx={{ color: "#CDD9E5" }}>
-                user not found
-              </Typography>
+            <Grid item key={uuidv4()}>
+              {isConnect ? (
+                <UserCard user={userInfo} />
+              ) : (
+                <Typography variant="h3" color="#CDD9E5">
+                  user not found
+                </Typography>
+              )}
             </Grid>
           )}
         </Grid>

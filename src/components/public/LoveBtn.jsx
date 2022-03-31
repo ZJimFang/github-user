@@ -17,6 +17,7 @@ const useStyles = makeStyles({
 });
 
 function storeInLocal(login, name, loved) {
+  //With the state of love store/delete in localStorage
   if (!loved) {
     localStorage.setItem(name, JSON.stringify({ login, name }));
   } else {
@@ -28,6 +29,7 @@ const LoveBtn = ({ login, name }) => {
   const classes = useStyles();
   const [loved, setLoved] = useState(false);
 
+  //if LocalStorage has this value then change Love default state
   useEffect(() => {
     if (JSON.parse(localStorage.getItem(name))) {
       setLoved(true);
