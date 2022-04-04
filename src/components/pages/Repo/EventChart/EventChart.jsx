@@ -4,43 +4,7 @@ import { Line } from "react-chartjs-2";
 import { Chart as ChartJS } from "chart.js/auto";
 import { Box } from "@mui/material";
 import Tooltip from "@mui/material/Tooltip";
-
-const chartStyled = {
-  minWidth: "35vw",
-  height: "35vh",
-  border: "1px solid rgb(75, 192, 192)",
-  borderRadius: "10px",
-  px: 1,
-};
-
-const options = {
-  responsive: true,
-  maintainAspectRatio: false,
-  plugins: {
-    legend: {
-      display: false,
-    },
-  },
-  animations: {
-    tension: {
-      duration: 1000,
-      easing: "linear",
-      from: 1,
-      to: 0,
-      loop: true,
-    },
-  },
-  scales: {
-    y: {
-      display: false, // Hide Y axis labels
-    },
-    x: {
-      display: false, // Hide X axis labels
-    },
-  },
-  tooltips: { enabled: false },
-  hover: { mode: null },
-};
+import { chartStyled, options } from "./style";
 
 async function fetchData(username, repo, eventTime_Set) {
   let page = 0;
@@ -110,7 +74,7 @@ const EventChart = () => {
 
   return (
     <Tooltip title={"Activity in the first 30 days"} placement="top" arrow>
-      <Box style={{ ...chartStyled }}>
+      <Box style={chartStyled}>
         <Line data={chart} options={options} />
       </Box>
     </Tooltip>

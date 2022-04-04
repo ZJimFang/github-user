@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { Box } from "@mui/material";
 import NameHeader from "../../public/NameHeader/NameHeader";
-import RepoInfo from "./RepoInfo";
-import RepoDetail from "./RepoDetail";
-import RepoActive from "./RepoActive";
+import RepoInfo from "./RepoInfo/RepoInfo";
+import RepoDetail from "./RepoDetail/RepoDetail";
+import RepoActive from "./RepoActive/RepoActive";
 import { useParams } from "react-router-dom";
 import { spaceAround } from "../../public/centerTypes";
 

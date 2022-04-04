@@ -2,14 +2,8 @@ import React, { useEffect, useState } from "react";
 import Paper from "@mui/material/Paper";
 import SearchIcon from "@mui/icons-material/Search";
 import { InputBase, IconButton } from "@material-ui/core";
-import { centerRow } from "./centerTypes";
-
-const searchStyled = {
-  padding: "2px 4px",
-  width: 170,
-  height: 35,
-  background: "#202020",
-};
+import { centerRow } from "../../../public/centerTypes";
+import { searchStyled } from "./style";
 
 //fetch user information
 async function fetchData(user) {

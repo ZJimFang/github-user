@@ -11,46 +11,21 @@ import InfoIcon from "@mui/icons-material/Info";
 import { Link as RouterLink } from "react-router-dom";
 import LoveBtn from "../../public/LoveBtn/LoveBtn";
 import {
+  detailBox,
+  descriptionStyled,
+  itemStyled,
+  list,
+  reposName,
+  status,
+  info,
+  languageStyled,
+  icon,
+} from "./style";
+import {
   spaceBetween,
   flex_start,
   centerRowBegin,
 } from "../../public/centerTypes";
-
-const list = {
-  width: "100%",
-  borderTop: "1px solid #444c56",
-};
-const reposName = {
-  fontSize: 22,
-  color: "#6EA4BF",
-  cursor: "pointer",
-  fontWeight: "bold",
-  textDecoration: "none",
-};
-const status = {
-  fontSize: 1,
-  margin: "0 10px",
-  padding: "0 7px",
-  borderRadius: "2rem",
-  border: "1px solid #9CD08F",
-};
-const info = {
-  color: "#768390",
-  width: "15px",
-  height: "15px",
-};
-const languageStyled = {
-  width: "8px",
-  height: "8px",
-  borderRadius: "50%",
-  margin: "1px 4px 0 0 ",
-};
-const icon = {
-  margin: "0 5px 0 12px",
-  width: "18px",
-  height: "18px",
-  color: "#b1b1b1",
-};
 
 const RepoCard = ({ repo }) => {
   let language_color = "red";
@@ -80,16 +55,16 @@ const RepoCard = ({ repo }) => {
 
   return (
     <li style={{ ...spaceBetween, ...list }}>
-      <Box sx={{ p: 3 }}>
+      <Box style={itemStyled}>
         <Box style={flex_start}>
           <Typography
-            style={{ ...reposName }}
+            style={reposName}
             component={RouterLink}
             to={`/users/${login}/repos/${name}`}
           >
             {name}
           </Typography>
-          <Typography style={{ ...status }} color="#9CD08F">
+          <Typography style={status} color="#9CD08F">
             {visibility.match("^[a-z]")
               ? visibility.charAt(0).toUpperCase() + visibility.substring(1)
               : visibility}
@@ -99,30 +74,30 @@ const RepoCard = ({ repo }) => {
             title={`update on ${timeStr[2]} ${timeStr[1]} ${timeStr[3]}`}
             placement="top"
           >
-            <InfoIcon style={{ ...info }} />
+            <InfoIcon style={info} />
           </Tooltip>
         </Box>
 
-        <Box sx={{ mb: 1, maxWidth: "450px" }}>
+        <Box style={descriptionStyled}>
           <Typography variant="body2" color="#768390">
             {description}
           </Typography>
         </Box>
 
-        <Box style={centerRowBegin} sx={{ fontSize: 1, color: "#768390" }}>
+        <Box style={{ ...centerRowBegin, ...detailBox }}>
           <Box
-            style={{ ...languageStyled }}
+            style={languageStyled}
             sx={{ backgroundColor: `${language_color}` }}
           />
           {language || "-"}
 
-          <CardMedia style={{ ...icon }} image={fork} component="img" />
+          <CardMedia style={icon} image={fork} component="img" />
           {forks}
 
-          <StarBorderIcon style={{ ...icon }} />
+          <StarBorderIcon style={icon} />
           {stargazers_count}
 
-          <VisibilityIcon style={{ ...icon }} />
+          <VisibilityIcon style={icon} />
           {watchers_count}
         </Box>
       </Box>

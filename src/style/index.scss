@@ -3,6 +3,7 @@
 * {
   padding: 0;
   margin: 0;
+  font-family: "Mukta, sans-serif";
 }
 #root {
   width: 100vw;
@@ -31,10 +32,10 @@ button.MuiToggleButton-root.Mui-selected {
 }
 
 .container {
+  overflow: scroll;
   overflow-x: hidden;
   width: 95vw;
   height: 95vh;
   background-color: #353535;
   border-radius: 20px;
-  overflow: scroll;
 }

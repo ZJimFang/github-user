@@ -1,25 +1,16 @@
 import React, { useState, useEffect } from "react";
 import { Box } from "@mui/material";
-import Contributor from "./Contributor/Contributor";
+import Contributor from "../Contributor/Contributor";
 import Stack from "@mui/material/Stack";
 import Typography from "@mui/material/Typography";
 import { v4 as uuidv4 } from "uuid";
-import LoveBtn from "../../public/LoveBtn/LoveBtn";
+import LoveBtn from "../../../public/LoveBtn/LoveBtn";
 import {
   spaceAroundColumn,
   centerColumn,
   centerColumnBtn,
-} from "../../public/centerTypes";
-
-const contributorsStyled = {
-  width: "32vw",
-  height: "40px",
-  overflow: "scroll",
-};
-const descriptionStyled = {
-  width: "300px",
-  height: "80px",
-};
+} from "../../../public/centerTypes";
+import { contributorsStyled, descriptionStyled } from "./style";
 
 async function fetchData(url) {
   if (url === undefined) return;
@@ -49,7 +40,7 @@ const RepoInfo = ({ repoInfo }) => {
           Contributors
         </Typography>
 
-        <Box style={{ ...contributorsStyled }}>
+        <Box style={contributorsStyled}>
           <Stack direction="row" spacing={2} justifyContent={style}>
             {contributors.length !== 0 ? (
               contributors.map((contributor) => (

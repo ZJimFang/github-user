@@ -1,25 +1,11 @@
 import React from "react";
 import { Box } from "@mui/material";
-import Contributor from "./Contributor/Contributor";
+import Contributor from "../Contributor/Contributor";
 import Typography from "@mui/material/Typography";
 import Tooltip from "@mui/material/Tooltip";
 import InfoIcon from "@mui/icons-material/Info";
-import { spaceBetween } from "../../public/centerTypes";
-
-const card = {
-  py: 1,
-  borderBottom: "2px solid #373E47",
-};
-const messageStyled = {
-  textAlign: "center",
-  margin: "10px",
-  padding: "5px 0",
-};
-const infoIcon = {
-  color: "#768390",
-  width: "15px",
-  height: "15px",
-};
+import { spaceBetween } from "../../../public/centerTypes";
+import { card, messageStyled, infoIcon } from "./style";
 
 const EventCard = ({ event }) => {
   const {
@@ -39,14 +25,14 @@ const EventCard = ({ event }) => {
       ) : (
         ""
       )}
-      <Typography color="#ADBAC7" style={{ ...messageStyled }}>
+      <Typography color="#ADBAC7" style={messageStyled}>
         {message}
       </Typography>
       <Tooltip
         title={`committed ${timeStr[2]} ${timeStr[1]} ${timeStr[3]}`}
         placement="top"
       >
-        <InfoIcon style={{ ...infoIcon }} />
+        <InfoIcon style={infoIcon} />
       </Tooltip>
     </Box>
   );

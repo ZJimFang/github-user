@@ -2,17 +2,8 @@ import React, { useState, useEffect } from "react";
 import { Pie } from "react-chartjs-2";
 import { Chart as ChartJS } from "chart.js/auto";
 import ClearIcon from "@mui/icons-material/Clear";
-import language_match from "../../../json/language_match.json";
-
-const options = {
-  responsive: true,
-  maintainAspectRatio: false,
-  plugins: {
-    legend: {
-      display: false,
-    },
-  },
-};
+import language_match from "../../../../json/language_match.json";
+import { options, clearIcon } from "./style";
 
 async function fetchData(url) {
   if (url === undefined) return;
@@ -75,7 +66,7 @@ function PieChart({ languages_url }) {
   return hasData ? (
     <Pie data={languageData} options={options} />
   ) : (
-    <ClearIcon sx={{ width: "80px", height: "80px" }} />
+    <ClearIcon style={clearIcon} />
   );
 }
 

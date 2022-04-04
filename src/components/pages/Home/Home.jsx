@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import Nav from "../../public/Nav";
 import DefaultUsers from "./DefaultUsers";
-import UserCard from "../../public/UserCard";
+import Nav from "./Nav/Nav";
+import UserCard from "./UserCard/UserCard";
 import { v4 as uuidv4 } from "uuid";
 import Typography from "@mui/material/Typography";
 import { Grid } from "@material-ui/core";
