@@ -3,26 +3,20 @@ import FavoriteIcon from "@mui/icons-material/Favorite";
 import Tooltip from "@mui/material/Tooltip";
 import { Box } from "@material-ui/core";
 import { Link as RouterLink } from "react-router-dom";
-import { makeStyles } from "@mui/styles";
+import { makeStyles } from "@material-ui/styles";
 import Search from "./Search";
 import { centerRow, spaceBetween } from "./centerTypes";
 
-const useStyles = makeStyles({
-  favoriteIcon: {
-    "&&": {
-      border: "1px solid #A72608",
-      padding: "8px",
-      margin: "0 10px",
-      color: "#A72608",
-      borderRadius: "10px",
-      cursor: "pointer",
-    },
-  },
-});
+const favoriteIcon = {
+  border: "1px solid #A72608",
+  padding: "8px",
+  margin: "0 10px",
+  color: "#A72608",
+  borderRadius: "10px",
+  cursor: "pointer",
+};
 
 const Nav = ({ setUserInfo, setIsConnect }) => {
-  const classes = useStyles();
-
   return (
     <Box style={spaceBetween} sx={{ height: 60, my: 2 }}>
       <a href={`/`}>
@@ -32,7 +26,7 @@ const Nav = ({ setUserInfo, setIsConnect }) => {
         <Search setUserInfo={setUserInfo} setIsConnect={setIsConnect} />
         <Box component={RouterLink} to={`/favorites`}>
           <Tooltip title={"Love"} placement="top">
-            <FavoriteIcon className={classes.favoriteIcon} />
+            <FavoriteIcon style={{ ...favoriteIcon }} />
           </Tooltip>
         </Box>
       </Box>
