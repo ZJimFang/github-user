@@ -64,6 +64,7 @@ const RepoCard = ({ repo }) => {
           >
             {name}
           </Typography>
+
           <Typography style={status} color="#9CD08F">
             {visibility.match("^[a-z]")
               ? visibility.charAt(0).toUpperCase() + visibility.substring(1)

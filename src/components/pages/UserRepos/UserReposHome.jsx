@@ -52,7 +52,7 @@ const User = () => {
   //detect wether scroll to the bottom
   const handleScroll = (e) => {
     const position_now = Math.floor(e.target.scrollHeight - e.target.scrollTop);
-    if (position_now - 5 < Math.floor(e.target.clientHeight) && canConnect) {
+    if (position_now - 3 < Math.floor(e.target.clientHeight) && canConnect) {
       let page_now = page + 1;
 
       if (page_now * 10 >= repositoriesNum) {

@@ -3,14 +3,14 @@ const list = {
   borderTop: "1px solid #444c56",
 };
 const reposName = {
-  fontSize: 22,
+  fontSize: "25px",
   color: "#6EA4BF",
   cursor: "pointer",
   fontWeight: "bold",
   textDecoration: "none",
 };
 const status = {
-  fontSize: 1,
+  fontSize: "8px",
   margin: "0 10px",
   padding: "0 7px",
   borderRadius: "2rem",
