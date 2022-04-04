@@ -50,20 +50,20 @@ const User = () => {
   }, [page]);
 
   //detect wether scroll to the bottom
-  const handleScroll = (e) => {
-    const position_now = Math.floor(e.target.scrollHeight - e.target.scrollTop);
-    if (position_now - 5 < Math.floor(e.target.clientHeight) && canConnect) {
-      let page_now = page + 1;
+  // const handleScroll = (e) => {
+  //   const position_now = Math.floor(e.target.scrollHeight - e.target.scrollTop);
+  //   if (position_now - 5 < Math.floor(e.target.clientHeight) && canConnect) {
+  //     let page_now = page + 1;
 
-      if (page_now * 10 >= repositoriesNum) {
-        setCanConnect(false);
-      }
-      setPage(page_now);
-    }
-  };
+  //     if (page_now * 10 >= repositoriesNum) {
+  //       setCanConnect(false);
+  //     }
+  //     setPage(page_now);
+  //   }
+  // };
 
   return (
-    <div className="container" onScroll={handleScroll}>
+    <div className="container">
       <NameHeader
         title={`${username}'s repositories`}
         toWhere={"/"}
