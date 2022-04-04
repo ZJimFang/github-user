@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import NameHeader from "../../public/NameHeader";
+import NameHeader from "../../public/NameHeader/NameHeader.jsx";
 import UserReposList from "../UserRepos/UserReposList";
 import { centerColumnStart } from "../../public/centerTypes";
 

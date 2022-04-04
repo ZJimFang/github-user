@@ -5,7 +5,7 @@ import App from "./App";
 import UserReposHome from "./components/pages/UserRepos/UserReposHome";
 import RepoPage from "./components/pages/Repo/RepoPage";
 import Favorites from "./components/pages/Favorites/Favorites";
-import NoMatch from "../src/components/pages/NoMatch";
+import Error from "./components/pages/error/Error.jsx";
 import "./style/index.scss";
 
 ReactDOM.render(
@@ -16,7 +16,7 @@ ReactDOM.render(
         <Route path="/users/:username/repos" element={<UserReposHome />} />
         <Route path="/users/:username/repos/:repo" element={<RepoPage />} />
         <Route path="/favorites" element={<Favorites />} />
-        <Route path="*" element={<NoMatch />} />
+        <Route path="*" element={<Error />} />
       </Routes>
     </Router>
   </React.StrictMode>,

@@ -2,19 +2,8 @@ import React from "react";
 import { Box } from "@mui/material";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import { Link as RouterLink } from "react-router-dom";
-import { centerColumn } from "./centerTypes";
-
-const headerStyle = {
-  width: "100%",
-  position: "relative",
-  margin: "20px 0 25px 0",
-};
-const arrow = {
-  cursor: "pointer",
-  position: "absolute",
-  bottom: "6px",
-  left: "20px",
-};
+import { centerColumn } from "../centerTypes";
+import { headerStyle, arrow } from "./style";
 
 const NameHeader = ({ title, toWhere, route }) => {
   return (

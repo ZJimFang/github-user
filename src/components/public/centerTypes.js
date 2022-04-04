@@ -59,13 +59,15 @@ const flex_start = {
   flexWrap: "wrap",
 };
 
-export { centerRow };
-export { centerRowBegin };
-export { centerColumn };
-export { spaceAround_nowrap };
-export { centerColumnStart };
-export { spaceBetween };
-export { flex_start };
-export { spaceAround };
-export { centerColumnBtn };
-export { spaceAroundColumn };
+export {
+  centerRow,
+  centerRowBegin,
+  centerColumn,
+  spaceAround_nowrap,
+  centerColumnStart,
+  spaceBetween,
+  flex_start,
+  spaceAround,
+  centerColumnBtn,
+  spaceAroundColumn,
+};

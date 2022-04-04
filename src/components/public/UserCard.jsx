@@ -2,7 +2,7 @@ import * as React from "react";
 import Card from "@mui/material/Card";
 import CardMedia from "@mui/material/CardMedia";
 import Typography from "@mui/material/Typography";
-import { CardActionArea, CardContent, makeStyles } from "@material-ui/core";
+import { CardActionArea, CardContent } from "@material-ui/core";
 import { Link as RouterLink } from "react-router-dom";
 import { centerRow } from "./centerTypes";
 
@@ -11,9 +11,8 @@ const cardContainer = {
   height: "150px",
   backgroundColor: "#3A3C47",
   border: "1px solid black",
-  "background-color": "#3A3C47",
 };
-const cardMedia = {
+const cardMediaStyled = {
   width: 100,
   height: 100,
   borderRadius: "50%",
@@ -38,7 +37,7 @@ const UserCard = ({ user }) => {
   return (
     <CardActionArea component={RouterLink} to={`/users/${login}/repos`}>
       <Card style={{ ...cardContainer, ...centerRow }}>
-        <CardMedia style={{ ...cardMedia }} image={avatar_url} />
+        <CardMedia style={{ ...cardMediaStyled }} image={avatar_url} />
         <CardContent>
           <Typography component="div" variant="h5" color="#CDD9E5">
             {name || "-"}

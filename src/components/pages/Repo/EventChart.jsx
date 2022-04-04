@@ -4,19 +4,14 @@ import { Line } from "react-chartjs-2";
 import { Chart as ChartJS } from "chart.js/auto";
 import { Box } from "@mui/material";
 import Tooltip from "@mui/material/Tooltip";
-import { makeStyles } from "@mui/styles";
 
-const useStyles = makeStyles({
-  chart: {
-    "&&": {
-      minWidth: "35vw",
-      height: "35vh",
-      border: "1px solid rgb(75, 192, 192)",
-      borderRadius: "10px",
-      px: 1,
-    },
-  },
-});
+const chartStyled = {
+  minWidth: "35vw",
+  height: "35vh",
+  border: "1px solid rgb(75, 192, 192)",
+  borderRadius: "10px",
+  px: 1,
+};
 
 const options = {
   responsive: true,
@@ -81,7 +76,6 @@ function buildTimeLine(eventTime_Set) {
 }
 
 const EventChart = () => {
-  const classes = useStyles();
   const eventTime_Set = new Set();
   const { username, repo } = useParams();
   const arr = new Array(30).fill(1);
@@ -116,7 +110,7 @@ const EventChart = () => {
 
   return (
     <Tooltip title={"Activity in the first 30 days"} placement="top" arrow>
-      <Box className={classes.chart}>
+      <Box style={{ ...chartStyled }}>
         <Line data={chart} options={options} />
       </Box>
     </Tooltip>

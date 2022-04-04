@@ -1,32 +1,25 @@
 import React, { useState, useEffect } from "react";
 import { Box } from "@mui/material";
-import Contributor from "../../public/Contributor";
+import Contributor from "./Contributor/Contributor";
 import Stack from "@mui/material/Stack";
 import Typography from "@mui/material/Typography";
 import { v4 as uuidv4 } from "uuid";
-import LoveBtn from "../../public/LoveBtn";
+import LoveBtn from "../../public/LoveBtn/LoveBtn";
 import {
   spaceAroundColumn,
   centerColumn,
   centerColumnBtn,
 } from "../../public/centerTypes";
-import { makeStyles } from "@mui/styles";
 
-const useStyles = makeStyles({
-  contributors: {
-    "&&": {
-      width: "32vw",
-      height: "40px",
-      overflow: "scroll",
-    },
-  },
-  description: {
-    "&&": {
-      width: "300px",
-      height: "80px",
-    },
-  },
-});
+const contributorsStyled = {
+  width: "32vw",
+  height: "40px",
+  overflow: "scroll",
+};
+const descriptionStyled = {
+  width: "300px",
+  height: "80px",
+};
 
 async function fetchData(url) {
   if (url === undefined) return;
@@ -36,7 +29,6 @@ async function fetchData(url) {
 }
 
 const RepoInfo = ({ repoInfo }) => {
-  const classes = useStyles();
   let style = "";
   const { contributors_url, description, owner, name, login } = repoInfo || "";
   const [contributors, setContributors] = useState([]);
@@ -57,7 +49,7 @@ const RepoInfo = ({ repoInfo }) => {
           Contributors
         </Typography>
 
-        <Box className={classes.contributors}>
+        <Box style={{ ...contributorsStyled }}>
           <Stack direction="row" spacing={2} justifyContent={style}>
             {contributors.length !== 0 ? (
               contributors.map((contributor) => (
@@ -80,7 +72,7 @@ const RepoInfo = ({ repoInfo }) => {
         </Box>
       </Box>
 
-      <Box style={centerColumn} className={classes.description}>
+      <Box style={{ ...centerColumn, ...descriptionStyled }}>
         <Typography color="#ADBAC7" sx={{ mt: 1 }}>
           Description
         </Typography>

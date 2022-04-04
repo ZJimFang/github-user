@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Box } from "@mui/material";
-import NameHeader from "../../public/NameHeader";
+import NameHeader from "../../public/NameHeader/NameHeader";
 import RepoInfo from "./RepoInfo";
 import RepoDetail from "./RepoDetail";
 import RepoActive from "./RepoActive";

@@ -4,7 +4,7 @@ import { Box } from "@mui/material";
 import Typography from "@mui/material/Typography";
 import CircularProgress from "@mui/material/CircularProgress";
 import UserReposList from "./UserReposList";
-import NameHeader from "../../public/NameHeader";
+import NameHeader from "../../public/NameHeader/NameHeader";
 import { centerColumnStart, centerColumn } from "../../public/centerTypes";
 import "../../../style/effect.scss";
 

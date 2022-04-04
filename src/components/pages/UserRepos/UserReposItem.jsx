@@ -9,7 +9,7 @@ import fork from "../../../images/fork.png";
 import Tooltip from "@mui/material/Tooltip";
 import InfoIcon from "@mui/icons-material/Info";
 import { Link as RouterLink } from "react-router-dom";
-import LoveBtn from "../../public/LoveBtn";
+import LoveBtn from "../../public/LoveBtn/LoveBtn";
 import {
   spaceBetween,
   flex_start,

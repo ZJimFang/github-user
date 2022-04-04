@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Grid } from "@material-ui/core";
 import { v4 as uuidv4 } from "uuid";
-import UserCard from "./UserCard";
+import UserCard from "../../public/UserCard";
 
 const DefaultUsers = () => {
   const userCards = [];
@@ -35,7 +35,7 @@ const DefaultUsers = () => {
 
   defaultUsers.forEach((user) => {
     userCards.push(
-      <Grid item justifyContent="center" alignItems="center" key={uuidv4()}>
+      <Grid item key={uuidv4()}>
         <UserCard user={user} />
       </Grid>
     );

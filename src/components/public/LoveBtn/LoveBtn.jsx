@@ -2,14 +2,7 @@ import React, { useState, useEffect } from "react";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import Typography from "@mui/material/Typography";
 import ToggleButton from "@mui/material/ToggleButton";
-
-const Toggle = {
-  marginRight: "15px",
-  backgroundColor: "#373E47",
-  color: "#ADBAC7",
-  height: "35px",
-  borderRadius: 3,
-};
+import { toggle } from "./style";
 
 function storeInLocal(login, name, loved) {
   //With the state of love store/delete in localStorage
@@ -32,7 +25,7 @@ const LoveBtn = ({ login, name }) => {
 
   return (
     <ToggleButton
-      style={{ ...Toggle }}
+      style={{ ...toggle }}
       value="check"
       selected={loved}
       onChange={() => {

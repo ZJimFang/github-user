@@ -3,7 +3,6 @@ import FavoriteIcon from "@mui/icons-material/Favorite";
 import Tooltip from "@mui/material/Tooltip";
 import { Box } from "@material-ui/core";
 import { Link as RouterLink } from "react-router-dom";
-import { makeStyles } from "@material-ui/styles";
 import Search from "./Search";
 import { centerRow, spaceBetween } from "./centerTypes";
 
