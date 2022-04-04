@@ -10,61 +10,49 @@ import Tooltip from "@mui/material/Tooltip";
 import InfoIcon from "@mui/icons-material/Info";
 import { Link as RouterLink } from "react-router-dom";
 import LoveBtn from "../../public/LoveBtn";
-import { makeStyles } from "@mui/styles";
 import {
   spaceBetween,
   flex_start,
   centerRowBegin,
 } from "../../public/centerTypes";
 
-const useStyles = makeStyles({
-  list: {
-    width: "100%",
-    borderTop: "1px solid #444c56",
-  },
-  reposName: {
-    "&&": {
-      fontSize: 22,
-      color: "#6EA4BF",
-      cursor: "pointer",
-      fontWeight: "bold",
-      textDecoration: "none",
-    },
-  },
-  status: {
-    "&&": {
-      fontSize: 1,
-      margin: "0 10px",
-      padding: "0 7px",
-      borderRadius: "2rem",
-      border: "1px solid #9CD08F",
-    },
-  },
-  info: {
-    "&&": {
-      color: "#768390",
-      width: "15px",
-      height: "15px",
-    },
-  },
-  language: {
-    width: "8px",
-    height: "8px",
-    borderRadius: "50%",
-    margin: "1px 4px 0 0 ",
-  },
-  icon: {
-    "&&": {
-      margin: "0 5px 0 12px",
-      width: "18px",
-      height: "18px",
-      color: "#b1b1b1",
-    },
-  },
-});
+const list = {
+  width: "100%",
+  borderTop: "1px solid #444c56",
+};
+const reposName = {
+  fontSize: 22,
+  color: "#6EA4BF",
+  cursor: "pointer",
+  fontWeight: "bold",
+  textDecoration: "none",
+};
+const status = {
+  fontSize: 1,
+  margin: "0 10px",
+  padding: "0 7px",
+  borderRadius: "2rem",
+  border: "1px solid #9CD08F",
+};
+const info = {
+  color: "#768390",
+  width: "15px",
+  height: "15px",
+};
+const languageStyled = {
+  width: "8px",
+  height: "8px",
+  borderRadius: "50%",
+  margin: "1px 4px 0 0 ",
+};
+const icon = {
+  margin: "0 5px 0 12px",
+  width: "18px",
+  height: "18px",
+  color: "#b1b1b1",
+};
 
 const RepoCard = ({ repo }) => {
-  const classes = useStyles();
   let language_color = "red";
   const {
     name,
@@ -91,17 +79,17 @@ const RepoCard = ({ repo }) => {
   }
 
   return (
-    <li className={classes.list} style={spaceBetween}>
+    <li style={{ ...spaceBetween, ...list }}>
       <Box sx={{ p: 3 }}>
         <Box style={flex_start}>
           <Typography
-            className={classes.reposName}
+            style={{ ...reposName }}
             component={RouterLink}
             to={`/users/${login}/repos/${name}`}
           >
             {name}
           </Typography>
-          <Typography className={classes.status} color="#9CD08F">
+          <Typography style={{ ...status }} color="#9CD08F">
             {visibility.match("^[a-z]")
               ? visibility.charAt(0).toUpperCase() + visibility.substring(1)
               : visibility}
@@ -111,7 +99,7 @@ const RepoCard = ({ repo }) => {
             title={`update on ${timeStr[2]} ${timeStr[1]} ${timeStr[3]}`}
             placement="top"
           >
-            <InfoIcon className={classes.info} />
+            <InfoIcon style={{ ...info }} />
           </Tooltip>
         </Box>
 
@@ -123,18 +111,18 @@ const RepoCard = ({ repo }) => {
 
         <Box style={centerRowBegin} sx={{ fontSize: 1, color: "#768390" }}>
           <Box
-            className={classes.language}
+            style={{ ...languageStyled }}
             sx={{ backgroundColor: `${language_color}` }}
           />
           {language || "-"}
 
-          <CardMedia className={classes.icon} image={fork} component="img" />
+          <CardMedia style={{ ...icon }} image={fork} component="img" />
           {forks}
 
-          <StarBorderIcon className={classes.icon} />
+          <StarBorderIcon style={{ ...icon }} />
           {stargazers_count}
 
-          <VisibilityIcon className={classes.icon} />
+          <VisibilityIcon style={{ ...icon }} />
           {watchers_count}
         </Box>
       </Box>
